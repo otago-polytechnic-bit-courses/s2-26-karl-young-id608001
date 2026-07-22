@@ -8,7 +8,7 @@ class Studio(models.Model):
     city = models.CharField(max_length=100)
     accepting_members = models.BooleanField(default=True)
     duration = models.IntegerField(default=60)
-    people_per_class = models.PositiveIntegerField(default=20)
+    people_per_class = models.PositiveIntegerField(default=30)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
