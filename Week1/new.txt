@@ -1,0 +1,3 @@
+This is a new file created using Python.
+This is some text that will be added to the new.txt file.
+This is some more text.
