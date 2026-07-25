@@ -9,9 +9,12 @@ class StudioClassInline(admin.TabularInline):
 
 @admin.register(Studio)
 class StudioAdmin(admin.ModelAdmin):
-    list_display = ("name", "suburb", "city", "accepting_members")
+    list_display = ("name", "suburb", "city", "accepting_members", "total_classes")
     search_fields = ("name", "suburb", "city")
     inlines = [StudioClassInline]
+
+    def total_classes(self, obj):
+        return obj.classes.count()
 
 
 @admin.register(StudioClass)

@@ -78,3 +78,8 @@ the admin search filtered the list and only showed the classes with the studio i
 
 ---
 
+**Task 4**
+
+I added total_classes to the list_display to make it easier to see which studios have many classes or none. this improves the admin experience by being able to see straight away which studios have many classes and which might need some more classes added. 
+
+I chose this option over ordering and inline editing because a computed column makes the admin page more informative at a glance. it provides more information directly in the list view making it easier to see the data without needing to open each studio one by one.
