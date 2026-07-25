@@ -56,7 +56,7 @@ with open("new.txt", "r") as file:
         print(line)
 ```
 
-[Link to the video](./Screenshots/WithContextManagerDes.mp4)
+[Link to the video](https://www.youtube.com/watch?v=NS7Ruf9UTPs)
 
 ---
 
