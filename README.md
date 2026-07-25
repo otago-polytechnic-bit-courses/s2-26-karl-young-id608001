@@ -64,3 +64,17 @@ with open("new.txt", "r") as file:
 
 A screenshot of the welcome function and the output in the console with venv.
 <img src="./Screenshots/Task3Welcome.png" alt="Screenshot of the welcome function" width="600"/>
+
+---
+
+**Module 2**
+
+**Task 3**
+
+I opened the Django admin and when to the studio section. then used the search bar to search for Andersons Bay which worked because i added the studio_suburb to the search_fields in my ClassAdmin 
+the admin search filtered the list and only showed the classes with the studio in Andersons Bay.
+
+<img src="./Screenshots/FilteredAdmin.png" alt="Screenshot of the admin search" width="600"/>
+
+---
+

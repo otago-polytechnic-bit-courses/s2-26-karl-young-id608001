@@ -7,8 +7,6 @@ class Studio(models.Model):
     suburb = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
     accepting_members = models.BooleanField(default=True)
-    duration = models.IntegerField(default=60)
-    people_per_class = models.PositiveIntegerField(default=30)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -22,6 +20,8 @@ class StudioClass(models.Model):
         related_name="classes",
     )
     name = models.CharField(max_length=200)
+    duration = models.IntegerField(default=60)
+    people_per_class = models.PositiveIntegerField(default=30)
 
     def __str__(self):
         return f"{self.name} ({self.studio.name}, {self.studio.city})"
