@@ -70,9 +70,10 @@ A screenshot of the welcome function and the output in the console with venv.
 **Module 2**
 
 **Task 3**
+The question was how many studios are there in andersons bay
 
-I opened the Django admin and when to the studio section. then used the search bar to search for Andersons Bay which worked because i added the studio_suburb to the search_fields in my ClassAdmin 
-the admin search filtered the list and only showed the classes with the studio in Andersons Bay.
+I opened the Django admin and when to the studio section. then used the search bar to search for Andersons Bay which worked because i added the studio_suburb to the search_fields in my ClassAdmin. 
+The admin search filtered the list and only showed the classes with the studio in Andersons Bay.
 
 <img src="./Screenshots/FilteredAdmin.png" alt="Screenshot of the admin search" width="600"/>
 

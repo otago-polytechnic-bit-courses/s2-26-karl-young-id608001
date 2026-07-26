@@ -10,6 +10,7 @@ class StudioClassInline(admin.TabularInline):
 @admin.register(Studio)
 class StudioAdmin(admin.ModelAdmin):
     list_display = ("name", "suburb", "city", "accepting_members", "total_classes")
+    list_filter = ("suburb", "city",)
     search_fields = ("name", "suburb", "city")
     inlines = [StudioClassInline]
 
