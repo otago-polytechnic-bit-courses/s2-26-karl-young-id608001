@@ -134,3 +134,24 @@ Before pressing the delete button on Morning Hitt, the class list view is shown 
 
 the classes after Morning Hitt has been deleted is shown below.
 ![Screenshot of class list before deletion](./Screenshots/Apitest/After.png)
+
+
+## Task 4 Query parameters
+
+The function to filter studios by city.
+
+```
+def get_queryset(self): 
+        if self.request.query_params.get("city"):
+            return self.queryset.filter(city__iexact=self.request.query_params.get("city")) # filter studios by city, case-insensitive with fieldName__iexact
+        return self.queryset
+
+```
+
+The curl command to filter studios by city.
+
+```
+curl http://127.0.0.1:8000/api/studios/?city=BALCLUTHA
+
+[{"id":6,"name":"Clutha Fit","suburb":"Clutha","city":"Balclutha","accepting_members":true,"created_at":"2026-07-29T01:21:55.929744Z"}]
+```

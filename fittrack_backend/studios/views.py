@@ -11,7 +11,17 @@ class StudioViewSet(viewsets.ModelViewSet): # ModelViewSet Generates list, retri
             return StudioDetailSerializer
         return StudioSerializer
 
+    def get_queryset(self): 
+        if self.request.query_params.get("city"):
+            return self.queryset.filter(city__iexact=self.request.query_params.get("city")) # filter studios by city, case-insensitive with fieldName__iexact
+        return self.queryset
+
 
 class StudioClassViewSet(viewsets.ModelViewSet):
     queryset = StudioClass.objects.all()
     serializer_class = StudioClassSerializer
+
+    def get_queryset(self): # a test function to filter the queryset based on the duration query parameter e.g: /api/classes/?duration=30
+        if self.request.query_params.get("duration"):
+            return self.queryset.filter(duration=self.request.query_params.get("duration"))
+        return self.queryset
