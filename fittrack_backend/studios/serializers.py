@@ -21,4 +21,4 @@ class StudioDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Studio
-        fields = ["id", "name", "suburb", "city", "created_at", "classes"]
+        fields = ["id", "name", "suburb", "city", "accepting_members", "created_at", "classes"]
