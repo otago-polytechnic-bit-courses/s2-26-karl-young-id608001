@@ -73,3 +73,45 @@ src/index.ts:57:16 - error TS2345: Argument of type '"active"'is not assignable 
 
 Found 1 error in src/index.ts:57
 ```
+
+## Task 5 
+
+I chose to change the frontend interfaces to have classes: StudioClass[], so then in the fetchStudiosClasses function I can return studio.classes instead of just classes.
+It makes it simpler and reflects the data structure better as the JSON returned from the backend has a classes field in the studio object.
+
+```
+interface Studio {
+  id: number
+  name: string
+  suburb: string
+  city: string
+  accepting_members: boolean
+  created_at: string
+  classes: StudioClass[];
+}
+
+type StudioId = number
+
+interface StudioClass {
+  id: number
+  studio: StudioId
+  name: string
+  duration: number
+  people_per_class: number
+}
+
+async function fetchStudiosClasses(studioId: number): Promise<StudioClass[]> {
+  const response = await fetch(`http://127.0.0.1:8000/api/studios/${studioId}`)
+   const studio: Studio = await response.json();
+  return studio.classes; 
+}
+
+
+async function load() {
+  const classes = await fetchStudiosClasses(2)
+  console.log(classes)
+}
+
+load()
+
+```
