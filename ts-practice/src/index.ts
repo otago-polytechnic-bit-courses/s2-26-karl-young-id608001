@@ -65,20 +65,35 @@ interface Paginated<T> {
 }
 
 function unwrap<T>(response: Paginated<T>): T {
-  return response.results[2];
+  return response.results[0];
 }
 
 const studioResponse: Paginated<Studio> = {
-   results: {
+   results: [{
     id: 1,
     name: "CityFit",
     suburb: "Dunedin Central",
     city: "Dunedin",
-    isAcceptingMembers: true,
+    accepting_members: true,
     createdAt: "2026-01-01",
-  },
-  status: 200,
+  }],
+  count: 1,
+}
+
+const studioClassResponse: Paginated<StudioClass> = {
+   results: [{
+    id: 1,
+    studio: 1,
+    name: "CityFit",
+    duration: 60,
+    people_per_class: 20,
+  }] ,
+  count: 1,
 }
 
 const studio: Studio = unwrap(studioResponse);
+const studioClass: StudioClass = unwrap(studioClassResponse);
 
+
+console.log(studio);
+console.log(studioClass);
