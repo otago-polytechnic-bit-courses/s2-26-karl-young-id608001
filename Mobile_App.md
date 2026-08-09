@@ -40,29 +40,50 @@ It can be a tool to help you with school projects, research, storing information
 - Connect with other readers and share book recommendations.
 - Gamification features like points or badges for chapters or books completed.
 - Graphs and statistics to track reading habits and progress over time.
+- A welcome page in a book style something with gold embellishment that turns the page to the main screen or login.
+- Loading screen with a bookelf or something stealing books and dropping them as it runs across the screen.
 
 ### Font options
 
 - Users can change the font in the settings.
-- Verdana, Open Sans, Garamond etc.
+- Verdana, Open Sans, Garamond, Display typeface etc.
 - Font size and colour can be changed. 
 
 ---
 
-## Screen Designs 
+## Screen Designs & Navigation
+
+### Home Screen
+Users can scroll to the left and right to see the books they have stored in the app
+and recommendations on the home screen.
+![home](image-1.png)
+
+### Library Screen
+Users can scroll down to see the books they own in list view and grid view, and search for books their books by title, author or genre.
+![Library](image-2.png)
+![Grid View](image-3.png)
+
+### Book Details Screen
+The book details screen will show the book cover, type, pages, title, author, genre, and a brief description of the book.
+
+![Book details page](image-6.png)
+
+### Settings Screen
+A downward scrollable settings screen with dropdowns for extra settings, and a toggle for dark mode.
+
+![Settings screen](image-4.png)
 
 
----
-
-## Navigation
-- Show how users move between screens.
-
+### Progress Screen
+In this screen users can view their reading habits and progress over time.
+and also scroll down through the completed books and see the progress of each book still being read.
+![Progress screen](image-5.png)
 
 ---
 
 ## Design Choices 
 
-It will be in dark mode by default, with a toggle to change it in the main screen. 
+It will be in dark mode by default, with a toggle to change it in the settings. 
 The fonts will be accessible and easy to read, with colour options, to change for accessibility. 
 The icons and overall style will be simple relaxed and easy to use. 
 
