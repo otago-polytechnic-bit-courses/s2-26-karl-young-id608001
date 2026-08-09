@@ -56,29 +56,48 @@ It can be a tool to help you with school projects, research, storing information
 ### Home Screen
 Users can scroll to the left and right to see the books they have stored in the app
 and recommendations on the home screen.
-![home](image-1.png)
+![home](../MobileWireframes/Home.png)
 
 ### Library Screen
 Users can scroll down to see the books they own in list view and grid view, and search for books their books by title, author or genre.
-![Library](image-2.png)
-![Grid View](image-3.png)
+![Library](../MobileWireframes/LibraryList.png)
+![Grid View](../MobileWireframes/LibraryGrid.png)
 
 ### Book Details Screen
 The book details screen will show the book cover, type, pages, title, author, genre, and a brief description of the book.
 
-![Book details page](image-6.png)
+![Book details page](../MobileWireframes/BookDetails.png)
 
 ### Settings Screen
 A downward scrollable settings screen with dropdowns for extra settings, and a toggle for dark mode.
 
-![Settings screen](image-4.png)
+![Settings screen](../MobileWireframes/Settings.png)
 
 
 ### Progress Screen
 In this screen users can view their reading habits and progress over time.
 and also scroll down through the completed books and see the progress of each book still being read.
-![Progress screen](image-5.png)
+![Progress screen](../MobileWireframes/Progress.png)
 
+### Sidebar
+
+a side bar that pops out to show user profile dark-mode toggle and logout button.
+
+![Sidebar](../MobileWireframes/Sidebar.png)
+
+
+### Book Reading screen
+The main screen to read all of the books in the app. 
+
+Users will be able to scroll down or to the side depending on the book type.
+If unfocused on the book eg tap once a menu will show at the bottom with a settings button to change the font, size, colour, and background colour.
+
+![Reading screen](../MobileWireframes/Read.png)
+
+Reader settings screen 
+![Reader settings](../MobileWireframes/ReadTheme.png)
+Text settings screen
+![text settings](../MobileWireframes/ReadText.png)
 ---
 
 ## Design Choices 
