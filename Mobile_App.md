@@ -8,9 +8,10 @@ In addition, provide the following:
 ---
 
 ## Purpose 
-This app is a place to store all your ebooks and audiobooks.
-It will let users read and listen to their books in the library, keep track of their reading progress, and recommend books based on their reading history. And upload your own books to save in the app. 
-This app is for anyone who wants to keep track of their reading and listening books in one place, easily accessible.
+This app is a place to store all your ebooks, audiobooks and view PDFs.
+It can help you keep track of your reading progress, and recommend books based on your reading history. You can upload your own books by copying them to the app. 
+This app works for anyone it is user friendly. 
+It can be a tool to help you with school projects, research, storing information and entertainment.
 
 ---
 
@@ -20,12 +21,23 @@ This app is for anyone who wants to keep track of their reading and listening bo
 ---
 
 ## Core Features 
-- Store ebooks and audiobooks in the app
-- Read and listen to books in the app
-- Keep track of reading and listening progress
-- Recommend books based on reading history
-- Upload your own books to save in the app
-- Accessibility features for visually impaired users, such as adjustable font sizes, colours/themes and screen reader support.
+- Store ebooks, audiobooks and PDFs.
+- Read and listen to books.
+- Keep track of reading and listening progress.
+- Recommend books based on reading history.
+- Upload your own books to save in the app.
+- Accessibility features for visually impaired users, such as adjustable fonts / sizes, colours/themes, volume controls and screen reader support.
+
+## Additional possible features
+- Connect with other readers and share book recommendations.
+- Gamification features like points or badges for chapters or books completed.
+- Graphs and statistics to track reading habits and progress over time.
+
+### Font options
+
+- Users can change the font in the settings.
+- Verdana, Open Sans, Garamond etc.
+- Font size and colour can be changed. 
 
 ---
 
@@ -41,7 +53,10 @@ This app is for anyone who wants to keep track of their reading and listening bo
 ---
 
 ## Design Choices 
-- Briefly explain your colour scheme, fonts, icons, and overall style.
+
+It will be in dark mode by default, with a toggle to change it in the main screen. 
+The fonts will be accessible and easy to read, with colour options, to change for accessibility. 
+The icons and overall style will be simple relaxed and easy to use. 
 
 
 ---
