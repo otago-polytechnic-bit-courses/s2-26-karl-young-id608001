@@ -2,7 +2,15 @@
 Choose an idea for a mobile app that solves a problem, helps people complete a task, or provides entertainment. Your app can be for any audience and any purpose.
 In addition, provide the following:
 
- - App Name:
+ - App Name
+ - Purpose - In 2-3 sentences, explain what your app does and who it is for.
+ - Target Audience - Who will use your app?
+ - Core Features - List 4-6 key features your app will include.
+ - Screen Designs - Sketch or wireframe at least 5 screens (paper, Figma, or another design tool). 
+ - Navigation - Show how users move between screens.
+ - Design Choices - Briefly explain your colour scheme, fonts, icons, and overall style.
+ 
+
 ## TookABook
 
 ---
