@@ -97,6 +97,7 @@ If unfocused on the book eg tap once a menu will show at the bottom with a setti
 Reader settings screen 
 
 ![Reader settings](./Screenshots/MobileWireframes/ReadTheme.png)
+
 Text settings screen
 
 ![text settings](./Screenshots/MobileWireframes/ReadText.png)
