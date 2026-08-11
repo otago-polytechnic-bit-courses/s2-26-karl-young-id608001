@@ -1,30 +1,34 @@
 import { View, Text, Pressable, StyleSheet } from 'react-native'
 
-interface studioRowProps {
+interface StudioRowProps {
   name: string
   suburb: string
   city: string
+  isFavorite: boolean
+  onToggleFavorite: () => void
 }
 
 export function StudioRow({
   name,
   suburb,
   city,
-  // isFavourite,
-  // onToggleFavourite,
-}: studioRowProps) {
+  isFavorite: isFavorite,
+  onToggleFavorite: onToggleFavorite,
+}: StudioRowProps) {
   return (
     <View style={styles.card}>
       <View style={styles.thumbnail} />
+
       <View style={styles.details}>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.meta}>
           {suburb}, {city}
         </Text>
       </View>
-      {/* <Pressable onPress={onToggleFavourite}>
-        <Text>{isFavourite ? '♥' : '♡'}</Text>
-      </Pressable> */}
+
+      <Pressable onPress={onToggleFavorite}>
+        <Text>{isFavorite ? '♥' : '♡'}</Text>
+      </Pressable>
     </View>
   )
 }
