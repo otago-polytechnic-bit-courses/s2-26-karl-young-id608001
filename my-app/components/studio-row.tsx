@@ -17,8 +17,6 @@ export function StudioRow({
 }: StudioRowProps) {
   return (
     <View style={styles.card}>
-      <View style={styles.thumbnail} />
-
       <View style={styles.details}>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.meta}>
@@ -27,21 +25,30 @@ export function StudioRow({
       </View>
 
       <Pressable onPress={onToggleFavorite}>
-        <Text>{isFavorite ? '♥' : '♡'}</Text>
+        <Text style={styles.heart}>{isFavorite ? '♥' : '♡'}</Text>
       </Pressable>
+      <View style={styles.thumbnail} />
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  card: { flexDirection: 'row', padding: 16, alignItems: 'center' },
-  thumbnail: {
-    width: 48,
-    height: 48,
-    borderRadius: 8,
-    backgroundColor: '#e5e7eb',
+  card: {
+    flexDirection: 'row',
+    padding: 12,
+    margin: 4,
+    alignItems: 'center',
+    backgroundColor: '#55d4e2',
+    borderRadius: 10,
   },
-  details: { marginLeft: 12, flex: 1 },
+  heart: { margin: 6, fontSize: 25 },
+  thumbnail: {
+    width: 50,
+    height: 50,
+    borderRadius: 18,
+    backgroundColor: '#e7eb11',
+  },
+  details: { marginLeft: 10, flex: 1 },
   name: { fontSize: 16, fontWeight: '600' },
-  meta: { fontSize: 14, color: '#6b7280' },
+  meta: { fontSize: 14, color: '#394150' },
 })
