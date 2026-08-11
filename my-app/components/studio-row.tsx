@@ -1,20 +1,14 @@
+import { useState } from 'react'
 import { View, Text, Pressable, StyleSheet } from 'react-native'
 
 interface StudioRowProps {
   name: string
   suburb: string
   city: string
-  isFavorite: boolean
-  onToggleFavorite: () => void
 }
 
-export function StudioRow({
-  name,
-  suburb,
-  city,
-  isFavorite: isFavorite,
-  onToggleFavorite: onToggleFavorite,
-}: StudioRowProps) {
+export function StudioRow({ name, suburb, city }: StudioRowProps) {
+  const [isFavorite, SetIsFavorite] = useState<boolean>(false)
   return (
     <View style={styles.card}>
       <View style={styles.details}>
@@ -24,7 +18,7 @@ export function StudioRow({
         </Text>
       </View>
 
-      <Pressable onPress={onToggleFavorite}>
+      <Pressable onPress={() => SetIsFavorite(!isFavorite)}>
         <Text style={styles.heart}>{isFavorite ? '♥' : '♡'}</Text>
       </Pressable>
       <View style={styles.thumbnail} />

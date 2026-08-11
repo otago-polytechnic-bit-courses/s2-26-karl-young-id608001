@@ -5,7 +5,7 @@ import { HelloWave } from '@/components/hello-wave'
 import ParallaxScrollView from '@/components/parallax-scroll-view'
 import { ThemedText } from '@/components/themed-text'
 import { ThemedView } from '@/components/themed-view'
-
+import { studios } from '@/assets/studios'
 import { Link } from 'expo-router'
 
 // export default function HomeScreen() {
@@ -79,19 +79,11 @@ import { Link } from 'expo-router'
 //   );
 // }
 
-const studios = [
-  { id: '1', name: 'CityFit', suburb: 'Dunedin Central', city: 'Dunedin' },
-  { id: '2', name: 'Harbourside Yoga', suburb: 'St Kilda', city: 'Dunedin' },
-  {
-    id: '3',
-    name: 'Northside Strength',
-    suburb: 'North Dunedin',
-    city: 'Dunedin',
-  },
-]
+
 
 export default function Index() {
-  return (
+  return (<>
+  
     <FlatList
       data={studios}
       style={styles.flat}
@@ -99,7 +91,8 @@ export default function Index() {
       renderItem={({ item }) => (
         <StudioRow name={item.name} suburb={item.suburb} city={item.city} />
       )}
-    />
+      />
+      </>
   )
 }
 
