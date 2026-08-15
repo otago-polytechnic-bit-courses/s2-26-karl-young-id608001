@@ -1,13 +1,25 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { View, Text, Pressable, StyleSheet, TextInput } from 'react-native'
 import { Studios } from '@/assets/studios'
 
 export function StudioForm() {
   const [name, setName] = useState('')
   const [suburb, setSuburb] = useState('')
+  const [studios, setStudios] = useState(Studios)
 
   // adding a new studio to the list of studios when the form is submitted
+  const onSubmit = () => {
+    const newStudio = {
+      id: (studios.length + 1).toString(),
+      name,
+      suburb,
+      city: 'Dunedin',
+    }
 
+    setStudios((prev) => [...prev, newStudio])
+    setName('')
+    setSuburb('')
+  }
   return (
     <>
       <View style={styles.form}>
@@ -23,7 +35,13 @@ export function StudioForm() {
           value={suburb}
           onChangeText={setSuburb}
         />
-        <Pressable style={styles.button} onPress={() => console.log('Submit pressed')}>
+        <Pressable
+          style={styles.button}
+          onPress={() => {
+            onSubmit()
+            console.log('Submit pressed')
+          }}
+        >
           <Text style={styles.buttonText}>Submit</Text>
         </Pressable>
       </View>
@@ -34,9 +52,10 @@ export function StudioForm() {
 const styles = StyleSheet.create({
   form: {
     flexDirection: 'row',
-    padding: 6,
+    alignSelf: 'center',
+    padding: 10,
     margin: 6,
-    gap: 8,
+    gap: 10,
     alignItems: 'center',
     backgroundColor: '#55d4e2',
     borderRadius: 10,
@@ -45,6 +64,7 @@ const styles = StyleSheet.create({
     color: '#000',
     fontWeight: 'bold',
     height: 40,
+    width: 120,
     backgroundColor: '#92bfd7',
   },
   button: {

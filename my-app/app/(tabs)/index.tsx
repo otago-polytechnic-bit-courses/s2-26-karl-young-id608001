@@ -1,4 +1,4 @@
-import { StyleSheet, FlatList, TextInput } from 'react-native'
+import { StyleSheet, FlatList, TextInput, Text, Pressable } from 'react-native'
 import { StudioRow } from '@/components/studio-row'
 import { StudioForm } from '@/components/studio-form'
 import { Studios } from '@/assets/studios'
@@ -13,6 +13,7 @@ interface Studio {
 
 export default function Index() {
   const [query, setQuery] = useState<string>('')
+  const [showForm, setShowForm] = useState<boolean>(false)
 
   const filtered: Studio[] = Studios.filter(
     (studio) =>
@@ -37,7 +38,10 @@ export default function Index() {
           <StudioRow name={item.name} suburb={item.suburb} city={item.city} />
         )}
       />
-      <StudioForm />
+      <Pressable style={styles.button} onPress={() => setShowForm(!showForm)}>
+        <Text style={styles.buttonText}>Add Studio</Text>
+      </Pressable>
+      {showForm && <StudioForm />}
     </>
   )
 }
@@ -51,4 +55,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#92bfd7',
   },
   flat: { marginTop: 32 },
+  button: {
+    backgroundColor: '#000102',
+    padding: 10,
+    margin: 10,
+    marginLeft: 120,
+    marginRight: 120,
+    borderRadius: 5,
+  },
+  buttonText: {
+    alignSelf: 'center',
+    color: '#fff',
+    fontWeight: 'bold',
+  },
 })
