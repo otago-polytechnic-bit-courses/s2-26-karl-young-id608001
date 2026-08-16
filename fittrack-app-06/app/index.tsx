@@ -1,30 +1,59 @@
 import { Link } from 'expo-router'
 import { useEffect, useState } from 'react'
 import { getStudios, Studio } from './studiosApi'
-import { FlatList, Text, ActivityIndicator, StyleSheet } from 'react-native'
+import {
+  FlatList,
+  Text,
+  ActivityIndicator,
+  StyleSheet,
+  View,
+} from 'react-native'
 import { StudioRow } from './components/studio-row'
 
 export default function StudiosScreen() {
+  const [error, setError] = useState<string | null>(null)
   const [studios, setStudios] = useState<Studio[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    getStudios().then((data) => {
-      setStudios(data)
-      setLoading(false)
-    })
+    getStudios()
+      .then((data) => {
+        setStudios(data)
+        setLoading(false)
+      })
+      .catch((err) => {
+        setError('Failed to load studios.')
+      })
+      .finally(() => {
+        setLoading(false)
+      })
   }, [])
 
   if (loading) {
-    return <ActivityIndicator />
+    return (
+      <>
+        <View style={[styles.container, styles.horizontal]}>
+          <ActivityIndicator size="large" />
+        </View>
+      </>
+    )
+  }
+
+  if (error) {
+    return (
+      <View style={[styles.container, styles.horizontal]}>
+        <Text>{error}</Text>
+      </View>
+    )
   }
 
   return (
     <FlatList
       data={studios}
+      style={styles.list}
       keyExtractor={(item) => String(item.id)}
       renderItem={({ item }) => (
-        <Link href={`/studios/${item.id}`}>
+        <Link style={styles.link} href={`/studios/${item.id}`}>
           <StudioRow name={item.name} suburb={item.suburb} city={item.city} />
         </Link>
       )}
@@ -33,15 +62,16 @@ export default function StudiosScreen() {
 }
 
 const styles = StyleSheet.create({
-  list: { padding: 16, marginTop: 20, backgroundColor: '#f3f4f6' },
-  row: {
-    backgroundColor: '#73c8dd',
-    margin: 4,
-    borderRadius: 8,
-    paddingVertical: 14,
-    paddingHorizontal: 12,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: '#d1d5db',
+  list: { padding: 20, backgroundColor: '#abb6cb' },
+  link: { marginTop: 6 },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
   },
-  rowText: { fontSize: 16, fontWeight: '500' },
+  horizontal: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    padding: 10,
+  },
 })
