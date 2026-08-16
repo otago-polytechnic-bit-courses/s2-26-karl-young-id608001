@@ -51,6 +51,7 @@ export default function StudiosScreen() {
     <FlatList
       data={studios}
       style={styles.list}
+      contentContainerStyle={styles.listContent}
       keyExtractor={(item) => String(item.id)}
       renderItem={({ item }) => (
         <Link style={styles.link} href={`/studios/${item.id}`}>
@@ -62,7 +63,8 @@ export default function StudiosScreen() {
 }
 
 const styles = StyleSheet.create({
-  list: { padding: 20, backgroundColor: '#abb6cb' },
+  listContent: { paddingTop: 60, paddingHorizontal: 20 },
+  list: { backgroundColor: '#abb6cb' },
   link: { marginTop: 6 },
   container: {
     flex: 1,

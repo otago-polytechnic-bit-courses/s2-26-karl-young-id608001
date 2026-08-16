@@ -1,8 +1,19 @@
+export interface StudioClass {
+  duration: number
+  id: number
+  name: string
+  people_per_class: number
+  studio: number
+}
+
 export interface Studio {
+  accepting_members: boolean
+  city: string
+  classes: StudioClass[]
+  created_at: string
   id: number
   name: string
   suburb: string
-  city: string
 }
 
 export async function getStudios(): Promise<Studio[]> {
