@@ -1,8 +1,23 @@
+import { useEffect, useState } from 'react'
+import { getStudio, Studio } from '../studiosApi'
 import { useLocalSearchParams } from 'expo-router'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, ActivityIndicator } from 'react-native'
 
 export default function StudioDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>()
+  const [studio, setStudio] = useState<Studio>()
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    getStudio(id).then((data) => {
+      setStudio(data)
+      setLoading(false)
+    })
+  }, [])
+
+  if (loading) {
+    return <ActivityIndicator />
+  }
 
   return (
     <View style={styles.container}>

@@ -1,16 +1,30 @@
 import { Link } from 'expo-router'
-import { View, Text, FlatList, StyleSheet } from 'react-native'
-import { Studios } from '../assets/studios'
+import { useEffect, useState } from 'react'
+import { getStudios, Studio } from './studiosApi'
+import { FlatList, Text, ActivityIndicator, StyleSheet } from 'react-native'
 
 export default function StudiosScreen() {
+  const [studios, setStudios] = useState<Studio[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    getStudios().then((data) => {
+      setStudios(data)
+      setLoading(false)
+    })
+  }, [])
+
+  if (loading) {
+    return <ActivityIndicator />
+  }
+
   return (
     <FlatList
-      contentContainerStyle={styles.list}
-      data={Studios}
-      keyExtractor={(item) => item.id}
+      data={studios}
+      keyExtractor={(item) => String(item.id)}
       renderItem={({ item }) => (
-        <Link href={`/studios/${item.id}`} style={styles.row}>
-          <Text style={styles.rowText}>{item.name}</Text>
+        <Link href={`/studios/${item.id}`}>
+          <Text>{item.name}</Text>
         </Link>
       )}
     />
