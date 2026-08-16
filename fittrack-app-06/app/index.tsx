@@ -2,6 +2,7 @@ import { Link } from 'expo-router'
 import { useEffect, useState } from 'react'
 import { getStudios, Studio } from './studiosApi'
 import { FlatList, Text, ActivityIndicator, StyleSheet } from 'react-native'
+import { StudioRow } from './components/studio-row'
 
 export default function StudiosScreen() {
   const [studios, setStudios] = useState<Studio[]>([])
@@ -24,7 +25,7 @@ export default function StudiosScreen() {
       keyExtractor={(item) => String(item.id)}
       renderItem={({ item }) => (
         <Link href={`/studios/${item.id}`}>
-          <Text>{item.name}</Text>
+          <StudioRow name={item.name} suburb={item.suburb} city={item.city} />
         </Link>
       )}
     />
