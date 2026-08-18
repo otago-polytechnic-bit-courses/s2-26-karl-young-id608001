@@ -88,3 +88,11 @@ I chose this option over ordering and inline editing because a computed column m
 Adding 250 more extra to studioClassInline makes adding data awkward as if your an admin and need to add 1 for different studios you would need to scroll through 250 extra forms to add one class. 
 this would make the admin experience worse as it would be more time consuming to add classes to different studios.
 one is much better as you can add one then another empty form will appear for you to add another class which is much more efficient and user friendly.
+
+
+## Module 6
+
+### Task 6
+
+React Navigation forces you to configure some things manually like defining the navigators, making screens and having to change the screen with code. you have to create the whole navigation file system yourself. 
+While the Expo router had been making it so you can just add another component to the apps screen function in index or just in the app folder.  
