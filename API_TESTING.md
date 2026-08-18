@@ -155,3 +155,31 @@ curl http://127.0.0.1:8000/api/studios/?city=BALCLUTHA
 
 [{"id":6,"name":"Clutha Fit","suburb":"Clutha","city":"Balclutha","accepting_members":true,"created_at":"2026-07-29T01:21:55.929744Z"}]
 ```
+
+## Module 7
+### Task 1
+
+The decoded payload is: 
+
+```
+{
+  "token_type": "access",
+  "exp": 1787090439,
+  "iat": 1787090139,
+  "jti": "f5ee3711e8af4feeaff71f6a5f81ce2a",
+  "user_id": "1"
+}
+```
+
+The token type states that its an access token and will expire in 5 mins
+The exp is the expiration time after which the token must not be accepted 
+IAT is the time at which the JWT was issued - creation time
+The "jti" claim can be used to prevent the JWT from being replayed as in its like a unique id to help make certain that the token will not be used again. 
+And the User_id is just the id of the user
+
+If i change one change one character is makes the token invalid and will be invalid
+eg: 
+```
+{"detail":"Given token not valid for any token type","code":"token_not_valid","messages":
+[{"token_class":"AccessToken","token_type":"access","message":"Token is invalid"}]}
+``` 
