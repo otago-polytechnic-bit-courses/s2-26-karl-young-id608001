@@ -1,10 +1,17 @@
 from rest_framework import viewsets
+from .permissions import IsOwnerOrReadOnly
 from .models import Studio, StudioClass
 from .serializers import StudioSerializer, StudioDetailSerializer, StudioClassSerializer
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
+
 
 # view - Receives a request and returns a response; Django's MVT "controller"
 class StudioViewSet(viewsets.ModelViewSet): # ModelViewSet Generates list, retrieve, create, update, and delete endpoints from a queryset and serializer
     queryset = Studio.objects.all()
+    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
     def get_serializer_class(self): # Lets a ViewSet choose a different serializer depending on the action
         if self.action == "retrieve":
