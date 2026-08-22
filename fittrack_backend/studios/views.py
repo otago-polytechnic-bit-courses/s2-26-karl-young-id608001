@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from .permissions import IsOwnerOrReadOnly
+from .permissions import IsOwnerOrReadOnly, BlockDeletionIfBooked
 from .models import Studio, StudioClass
 from .serializers import StudioSerializer, StudioDetailSerializer, StudioClassSerializer
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
@@ -27,7 +27,8 @@ class StudioViewSet(viewsets.ModelViewSet): # ModelViewSet Generates list, retri
 class StudioClassViewSet(viewsets.ModelViewSet):
     queryset = StudioClass.objects.all()
     serializer_class = StudioClassSerializer
-
+    permission_classes = [IsAuthenticatedOrReadOnly, BlockDeletionIfBooked]
+  
     def get_queryset(self): # a test function to filter the queryset based on the duration query parameter e.g: /api/classes/?duration=30
         if self.request.query_params.get("duration"):
             return self.queryset.filter(duration=self.request.query_params.get("duration"))

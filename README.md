@@ -96,3 +96,45 @@ one is much better as you can add one then another empty form will appear for yo
 
 React Navigation forces you to configure some things manually like defining the navigators, making screens and having to change the screen with code. you have to create the whole navigation file system yourself. 
 While the Expo router had been making it so you can just add another component to the apps screen function in index or just in the app folder.  
+
+## Module 7 
+
+### Task 3
+
+I added a rule for the permissions on Studio Classes which blocks deletion if there are active bookings called - BlockDeletionIfBooked. I used the has_object_permission Hook because the rule depends on checking the booking count and the has_permission hook wouldn't be a good fit as i needed to access the object.
+
+I had to add bookings to the studio classes and then try to delete one with the curl command below.
+ 
+```
+$ curl -i -X DELETE http://127.0.0.1:8000/api/classes/10/ \
+  -H "Authorization: Bearer $SUPER"
+HTTP/1.1 403 Forbidden
+Date: Sat, 22 Aug 2026 23:26:49 GMT
+Server: WSGIServer/0.2 CPython/3.14.6
+Content-Type: application/json
+Vary: Accept
+Allow: GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+X-Frame-Options: DENY
+Content-Length: 49
+X-Content-Type-Options: nosniff
+Referrer-Policy: same-origin
+Cross-Origin-Opener-Policy: same-origin
+
+{"detail":"Cannot delete classes with bookings!"}(venv) 
+```
+
+This curl command deleted the class. 
+```
+ curl -i -X DELETE http://127.0.0.1:8000/api/classes/8/   -H "Authorization: Bearer
+ $SUPER"
+HTTP/1.1 204 No Content
+Date: Sat, 22 Aug 2026 23:36:44 GMT
+Server: WSGIServer/0.2 CPython/3.14.6
+Vary: Accept
+Allow: GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+X-Frame-Options: DENY
+Content-Length: 0
+X-Content-Type-Options: nosniff
+Referrer-Policy: same-origin
+Cross-Origin-Opener-Policy: same-origin
+```
