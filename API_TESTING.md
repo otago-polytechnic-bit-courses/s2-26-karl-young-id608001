@@ -183,3 +183,39 @@ eg:
 {"detail":"Given token not valid for any token type","code":"token_not_valid","messages":
 [{"token_class":"AccessToken","token_type":"access","message":"Token is invalid"}]}
 ``` 
+
+### Task 2
+
+The user 
+```
+HEMI=$(curl -s -X POST http://127.0.0.1:8000/api/token/ \
+  -H "Content-Type: application/json" \
+  -d '{"username": "hemi", "password": "kererupine24"}' | jq -r .access)
+```
+
+The Request
+
+```
+ curl -i -X PATCH http://127.0.0.1:8000/api/studios/3/ \
+  -H "Authorization: Bearer $HEMI" \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Hemi Was Here"}'
+```
+
+And the status code plus the response 
+```
+HTTP/1.1 403 Forbidden
+Date: Sat, 22 Aug 2026 22:33:51 GMT
+Server: WSGIServer/0.2 CPython/3.14.6
+Content-Type: application/json
+Vary: Accept
+Allow: GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+X-Frame-Options: DENY
+Content-Length: 63
+X-Content-Type-Options: nosniff
+Referrer-Policy: same-origin
+Cross-Origin-Opener-Policy: same-origin
+
+{"detail":"You do not have permission to perform this action."}(venv) 
+  
+```
