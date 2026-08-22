@@ -12,7 +12,7 @@ class StudioSerializer(serializers.ModelSerializer):
 class StudioClassSerializer(serializers.ModelSerializer):
     class Meta:
         model = StudioClass
-        fields = ["id", "studio", "name", "duration", "people_per_class"]
+        fields = ["id", "studio", "name", "duration", "people_per_class", "bookings"]
 
 
 # Nested to show one of each 

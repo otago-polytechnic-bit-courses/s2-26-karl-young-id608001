@@ -32,6 +32,7 @@ class StudioClass(models.Model):
     name = models.CharField(max_length=200)
     duration = models.IntegerField(default=60)
     people_per_class = models.PositiveIntegerField(default=30)
+    bookings = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return f"{self.name} ({self.studio.name}, {self.studio.city})"
