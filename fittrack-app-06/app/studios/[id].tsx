@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getStudio, Studio } from '../studiosApi'
+import { getStudio, Studio } from '../../api/studiosApi'
 import { useLocalSearchParams } from 'expo-router'
 import {
   View,
@@ -55,7 +55,7 @@ export default function StudioDetailScreen() {
             {studio?.suburb}, {studio?.city}
           </Text>
           <Text style={styles.meta}>
-            Classes: {studio?.classes.length || 0}
+            Classes: {studio?.classes?.length || 0}
           </Text>
           <FlatList
             data={studio?.classes || []}

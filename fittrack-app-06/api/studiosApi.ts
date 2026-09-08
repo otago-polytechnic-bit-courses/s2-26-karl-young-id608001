@@ -21,11 +21,19 @@ async function apiFetch(
   return fetch(`${BASE_URL}${path}`, { ...options, headers })
 }
 
+export interface StudioClass {
+  id: number
+  name: string
+  duration: number
+  people_per_class: number
+}
+
 export interface Studio {
   id: number
   name: string
   suburb: string
   city: string
+  classes?: StudioClass[]
 }
 
 export async function getStudios(): Promise<Studio[]> {
@@ -33,6 +41,16 @@ export async function getStudios(): Promise<Studio[]> {
 
   if (!response.ok) {
     throw new Error('Could not load studios')
+  }
+
+  return response.json()
+}
+
+export async function getStudio(id: string): Promise<Studio> {
+  const response = await apiFetch(`/studios/${id}/`)
+
+  if (!response.ok) {
+    throw new Error('Could not load studio')
   }
 
   return response.json()

@@ -7,7 +7,8 @@ import {
   TextInput,
   View,
 } from 'react-native'
-import { login } from './auth'
+import { login } from '../api/auth'
+import { router } from 'expo-router'
 
 export default function loginScreen() {
   const [username, setUsername] = useState('')
@@ -22,6 +23,7 @@ export default function loginScreen() {
     login(username, password)
       .then(() => {
         // do something to navigate to the page
+        router.replace('/')
       })
       .catch((err) => {
         setError('Invalid username or password.')

@@ -1,6 +1,6 @@
 import { Link } from 'expo-router'
 import { useEffect, useState } from 'react'
-import { getStudios, Studio } from './studiosApi'
+import { getStudios, Studio } from '../api/studiosApi'
 import {
   FlatList,
   Text,
