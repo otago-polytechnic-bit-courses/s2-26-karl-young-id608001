@@ -3,7 +3,7 @@ import * as SecureStore from 'expo-secure-store'
 const ACCESS_KEY = 'fittrack.access'
 // need the refresh token to get a new access token when the old one expires
 const REFRESH_KEY = 'fittrack.refresh'
-const BASE_URL = 'http://10.0.2.2:8000/api'
+const BASE_URL = 'http://10.0.2.2:8000'
 // http://10.0.2.2:8000/
 // http://127.0.0.1:8000/
 
@@ -26,7 +26,7 @@ export async function clearToken(): Promise<void> {
 }
 
 export async function login(username: string, password: string): Promise<void> {
-  const response = await fetch(`${BASE_URL}/token/`, {
+  const response = await fetch(`${BASE_URL}/api/token/`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ username, password }),

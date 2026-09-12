@@ -7,7 +7,7 @@ interface StudioRowProps {
   city: string
 }
 
-export function StudioRow({ name, suburb, city }: StudioRowProps) {
+export default function StudioRow({ name, suburb, city }: StudioRowProps) {
   const [isFavorite, SetIsFavorite] = useState<boolean>(false)
   return (
     <View style={styles.card}>

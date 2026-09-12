@@ -9,7 +9,7 @@ import {
   StyleSheet,
   View,
 } from 'react-native'
-import { StudioRow } from './components/studio-row'
+import StudioRow from './components/studio-row'
 import { clearToken, getToken } from '../api/auth'
 
 export default function StudiosScreen() {
