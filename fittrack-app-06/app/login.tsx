@@ -22,7 +22,6 @@ export default function loginScreen() {
 
     login(username, password)
       .then(() => {
-        // do something to navigate to the page
         router.replace('/')
       })
       .catch((err) => {
@@ -43,22 +42,19 @@ export default function loginScreen() {
     )
   }
 
-  if (error) {
-    return (
-      <View style={[styles.container, styles.horizontal]}>
-        <Text>{error}</Text>
-      </View>
-    )
-  }
   return (
-    <>
-      <View>
-        <Text>Log in</Text>
+    <View style={styles.container}>
+      <View style={styles.form}>
+        <Text style={styles.title}>Log in</Text>
+
+        {error ? <Text style={styles.error}>{error}</Text> : null}
+
         <TextInput
           style={styles.input}
           placeholder="Username"
           value={username}
           onChangeText={setUsername}
+          autoCapitalize="none"
         />
 
         <TextInput
@@ -71,25 +67,41 @@ export default function loginScreen() {
 
         <Button title="Log In" onPress={handleLogin} />
       </View>
-    </>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
-  input: {
-    margin: 0,
-  },
-  button: {
-    padding: 2,
-  },
   container: {
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
+    padding: 24,
+  },
+  form: {
+    width: '100%',
+    maxWidth: 400,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: '600',
+    marginBottom: 16,
   },
   horizontal: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
     padding: 10,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    padding: 12,
+    marginBottom: 12,
+  },
+  error: {
+    color: 'red',
+    marginBottom: 12,
   },
 })

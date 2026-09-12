@@ -1,33 +1,63 @@
-import { Link } from 'expo-router'
-import { useEffect, useState } from 'react'
+import { useFocusEffect, router, Link } from 'expo-router'
+import { useCallback, useState } from 'react'
 import { getStudios, Studio } from '../api/studiosApi'
 import {
   FlatList,
   Text,
   ActivityIndicator,
+  Pressable,
   StyleSheet,
   View,
 } from 'react-native'
 import { StudioRow } from './components/studio-row'
+import { clearToken, getToken } from '../api/auth'
 
 export default function StudiosScreen() {
   const [error, setError] = useState<string | null>(null)
   const [studios, setStudios] = useState<Studio[]>([])
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    getStudios()
-      .then((data) => {
-        setStudios(data)
-        setLoading(false)
-      })
-      .catch((err) => {
-        setError('Failed to load studios.')
-      })
-      .finally(() => {
-        setLoading(false)
-      })
-  }, [])
+  useFocusEffect(
+    useCallback(() => {
+      let cancelled = false
+
+      async function load() {
+        const token = await getToken()
+        if (!token) {
+          router.replace('/login')
+          return
+        }
+
+        setLoading(true)
+        setError(null)
+
+        try {
+          const data = await getStudios()
+          if (!cancelled) {
+            setStudios(data)
+          }
+        } catch {
+          if (!cancelled) {
+            setError('Could not load studios. Is the API running?')
+          }
+        } finally {
+          if (!cancelled) {
+            setLoading(false)
+          }
+        }
+      }
+      load()
+
+      return () => {
+        cancelled = true
+      }
+    }, []),
+  )
+
+  async function handleLogout() {
+    await clearToken()
+    router.replace('/login')
+  }
 
   if (loading) {
     return (
@@ -48,27 +78,45 @@ export default function StudiosScreen() {
   }
 
   return (
-    <FlatList
-      data={studios}
-      style={styles.list}
-      contentContainerStyle={styles.listContent}
-      keyExtractor={(item) => String(item.id)}
-      renderItem={({ item }) => (
-        <Link style={styles.link} href={`/studios/${item.id}`}>
-          <StudioRow name={item.name} suburb={item.suburb} city={item.city} />
-        </Link>
-      )}
-    />
+    <View style={styles.container}>
+      <FlatList
+        contentContainerStyle={styles.list}
+        data={studios}
+        keyExtractor={(item) => String(item.id)}
+        renderItem={({ item }) => (
+          <Link href={`/studios/${item.id}`} asChild>
+            <Pressable style={styles.row}>
+              <Text style={styles.rowText}>{item.name}</Text>
+              <Text style={styles.rowMeta}>
+                {item.suburb}, {item.city}
+              </Text>
+            </Pressable>
+          </Link>
+        )}
+        ListEmptyComponent={<Text style={styles.empty}>No studios yet.</Text>}
+      />
+
+      <Pressable style={styles.logout} onPress={handleLogout}>
+        <Text style={styles.logoutText}>Log out</Text>
+      </Pressable>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
-  listContent: { paddingTop: 60, paddingHorizontal: 20 },
-  list: { backgroundColor: '#abb6cb' },
-  link: { marginTop: 6 },
-  container: {
+  container: { flex: 1 },
+  center: {
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
+    padding: 24,
+  },
+  list: { padding: 16 },
+  row: {
+    paddingVertical: 14,
+    paddingHorizontal: 12,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#d1d5db',
   },
   horizontal: {
     flexDirection: 'row',
@@ -76,4 +124,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
   },
+  rowText: { fontSize: 16, fontWeight: '600' },
+  rowMeta: { fontSize: 13, color: '#6b7280', marginTop: 2 },
+  empty: { textAlign: 'center', color: '#6b7280', padding: 24 },
+  error: { color: '#dc2626' },
+  logout: { padding: 16, alignItems: 'center' },
+  logoutText: { color: '#dc2626', fontWeight: '600' },
 })
