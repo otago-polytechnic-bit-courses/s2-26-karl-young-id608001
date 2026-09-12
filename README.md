@@ -147,3 +147,8 @@ The user will not notice when this happens as the app will stay logged in.
 
 compared clearing the token and sending the user back to the login page every 5 minutes. this is a better user experience and will show no interruption to the user. 
 but might be slightly slower on the first request as the app will handle a failed request and then retry it with a new token. but this is still better than logging the user out every 5 minutes.
+
+### Task 7
+I added all the .env and the settings. then ran git log -p -- fittrack_backend/settings.py
+and found the old SECRET_KEY has been committed and i should treat that at compromised because anyone can access it online. 
+I created a new key and put it in the .env file which is ignored by git. so its now safe and different.
