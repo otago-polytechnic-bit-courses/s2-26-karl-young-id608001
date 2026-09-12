@@ -19,7 +19,7 @@ async function apiFetch(
   }
 
   // Make the first API request
-  let response = await fetch(`${BASE_URL}${path}`, { ...options, headers })
+  let response = await fetch(`${BASE_URL}/api${path}`, { ...options, headers })
 
   // If the response is 401 Unauthorized, try to refresh the access token and retry the request
   if (response.status === 401) {
