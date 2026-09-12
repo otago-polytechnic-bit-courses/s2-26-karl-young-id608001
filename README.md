@@ -138,3 +138,12 @@ X-Content-Type-Options: nosniff
 Referrer-Policy: same-origin
 Cross-Origin-Opener-Policy: same-origin
 ```
+
+### Task 6
+
+I implemented the refresh on 401 strategy. which when the api returns with a 401 response the app will automatically changes the refresh token for a new one and retry's the request.
+
+The user will not notice when this happens as the app will stay logged in. 
+
+compared clearing the token and sending the user back to the login page every 5 minutes. this is a better user experience and will show no interruption to the user. 
+but might be slightly slower on the first request as the app will handle a failed request and then retry it with a new token. but this is still better than logging the user out every 5 minutes.
