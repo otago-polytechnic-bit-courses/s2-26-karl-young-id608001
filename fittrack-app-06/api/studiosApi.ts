@@ -1,6 +1,6 @@
 import { clearToken, getToken, refreshAccessToken } from './auth'
 
-const BASE_URL = process.env.EXPO_PUBLIC_API_URL || 'http://192.168.0.103:8000'
+const BASE_URL = process.env.EXPO_PUBLIC_API_URL
 // http://10.0.2.2:8000/ alt
 
 async function apiFetch(
