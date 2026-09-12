@@ -1,4 +1,4 @@
-import { getToken } from './auth'
+import { clearToken, getToken, refreshAccessToken } from './auth'
 
 const BASE_URL = 'http://10.0.2.2:8000/api'
 // http://10.0.2.2:8000/ alt
@@ -17,8 +17,30 @@ async function apiFetch(
   if (token) {
     headers.Authorization = `Bearer ${token}`
   }
-  
-  return fetch(`${BASE_URL}${path}`, { ...options, headers })
+
+  // Make the first API request
+  let response = await fetch(`${BASE_URL}${path}`, { ...options, headers })
+
+  // If the response is 401 Unauthorized, try to refresh the access token and retry the request
+  if (response.status === 401) {
+    const newToken = await refreshAccessToken()
+
+    if (!newToken) {
+      await clearToken()
+      return response
+    }
+
+    // Retry the request with the new access token
+    const retryHeaders = {
+      ...headers,
+      Authorization: `Bearer ${newToken}`,
+    }
+    response = await fetch(`${BASE_URL}${path}`, {
+      ...options,
+      headers: retryHeaders,
+    })
+  }
+  return response
 }
 
 export interface StudioClass {
