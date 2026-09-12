@@ -17,7 +17,7 @@ async function apiFetch(
   if (token) {
     headers.Authorization = `Bearer ${token}`
   }
-
+  
   return fetch(`${BASE_URL}${path}`, { ...options, headers })
 }
 

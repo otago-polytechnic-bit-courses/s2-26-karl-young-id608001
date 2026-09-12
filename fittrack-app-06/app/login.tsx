@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import {
   ActivityIndicator,
-  Button,
+  Pressable,
   StyleSheet,
   Text,
   TextInput,
@@ -65,7 +65,15 @@ export default function loginScreen() {
           secureTextEntry
         />
 
-        <Button title="Log In" onPress={handleLogin} />
+        <Pressable
+          style={styles.button}
+          onPress={handleLogin}
+          disabled={loading}
+        >
+          <Text style={styles.buttonText}>
+            {loading ? 'Logging in…' : 'Log in'}
+          </Text>
+        </Pressable>
       </View>
     </View>
   )
@@ -104,4 +112,11 @@ const styles = StyleSheet.create({
     color: 'red',
     marginBottom: 12,
   },
+  button: {
+    backgroundColor: '#23b2d5',
+    borderRadius: 8,
+    padding: 14,
+    alignItems: 'center',
+  },
+  buttonText: { color: '#000000', fontWeight: '600' },
 })
