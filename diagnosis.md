@@ -65,6 +65,15 @@ This has a **high severity** because the code would be hard to maintain if the v
 Location: toolshed_backend/settings.py Under line 54
 Without CORS_ALLOWED_ORIGINS some browsers may block requests to the backend preventing the app from working from different origins 
 
-with this missing it might mess with having a secure api design. 
+With this missing it might mess with having a secure api design. 
 
 This is a **medium severity** as the app will still function but could break depending on the setup.
+
+## 8
+Auth
+Location: sheds/views.py file lines 45-48, 94-97, 123-126.
+The same auth check appears in 3 different functions throughout the views. This could be split into a single function and called instead, or changed to implement IsAuthenticated using the rest_framework's permissions.
+
+This violates DRY and misses the Strategy pattern, since the auth logic should be interchangeable rather than copied and pasted. and ignoring the main benefit of DRF's permission system. 
+
+This is **medium severity** since the app still works but has duplicated the auth code, which requires changes in multiple places and leaves room for errors. 
