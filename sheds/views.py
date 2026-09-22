@@ -4,14 +4,15 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .serializers import ShedSerializer, ToolSerializer, ShedDetailSerializer
 from .models import Shed, Tool
 
 
 class ShedViewSet(viewsets.ModelViewSet):
     queryset = Shed.objects.all()
-
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
