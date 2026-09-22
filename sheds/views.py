@@ -24,12 +24,10 @@ class ShedViewSet(viewsets.ModelViewSet):
     def get_queryset(self): 
         if self.request.query_params.get("name"):
             return self.queryset.filter(name__iexact=self.request.query_params.get("name")) 
+        if self.request.query_params.get("city"):
+            return self.queryset.filter(city__iexact=self.request.query_params.get("city")) 
         return self.queryset
 
-    def get_queryset(self): 
-            if self.request.query_params.get("city"):
-                return self.queryset.filter(city__iexact=self.request.query_params.get("city")) 
-            return self.queryset
         
 
     
