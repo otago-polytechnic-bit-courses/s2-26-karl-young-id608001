@@ -3,10 +3,35 @@ from django.db import connection
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
-
+from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
+from .serializers import ShedSerializer, ToolSerializer, ShedDetailSerializer
 from .models import Shed, Tool
 
 
+class ShedViewSet(viewsets.ModelViewSet):
+    queryset = Shed.objects.all()
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
+    def get_serializer_class(self): 
+        if self.action == "retrieve":
+            return ShedDetailSerializer
+        return ShedSerializer
+
+    def get_queryset(self): 
+        if self.request.query_params.get("name"):
+            return self.queryset.filter(name__iexact=self.request.query_params.get("name")) 
+        return self.queryset
+
+    def get_queryset(self): 
+            if self.request.query_params.get("city"):
+                return self.queryset.filter(city__iexact=self.request.query_params.get("city")) 
+            return self.queryset
+        
+
+    
 @api_view(["GET", "POST"])
 def sheds(request):
     if request.method == "GET":
