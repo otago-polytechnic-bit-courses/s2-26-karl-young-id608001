@@ -26,6 +26,11 @@ class ShedDetailSerializer(ToolCount, serializers.ModelSerializer):
     tools = ToolSerializer(many=True, read_only=True)
     class Meta:
         model = Shed
-        fields = ["id", "name", "suburb", "city", "tools", "tool_count"]
+        fields = ["id", "name", "suburb", "city", "created_at", "tools"]
 
+
+class ShedUpdateSerializer(ToolCount, serializers.ModelSerializer):
+    class Meta:
+        model = Shed
+        fields = ["id", "name", "suburb", "city", "tool_count"]
 
