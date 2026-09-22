@@ -28,67 +28,6 @@ class ShedViewSet(viewsets.ModelViewSet):
             return self.queryset.filter(city__iexact=self.request.query_params.get("city")) 
         return self.queryset
 
-        
-
-    
-@api_view(["GET", "POST"])
-def sheds(request):
-    if request.method == "GET":
-        city = request.GET.get("city")
-
-        if city:
-            with connection.cursor() as cursor:
-                cursor.execute(
-                    "SELECT id, name, suburb, city FROM sheds_shed WHERE city = '"
-                    + city
-                    + "' ORDER BY id"
-                )
-                rows = cursor.fetchall()
-            d = []
-            for r in rows:
-                d.append({
-                    "id": r[0],
-                    "name": r[1],
-                    "suburb": r[2],
-                    "city": r[3],
-                    "tool_count": Tool.objects.filter(shed_id=r[0]).count(),
-                })
-            return Response(d)
-
-        d = []
-        for s in Shed.objects.all().order_by("id"):
-            d.append({
-                "id": s.id,
-                "name": s.name,
-                "suburb": s.suburb,
-                "city": s.city,
-                "tool_count": s.tools.count(),
-            })
-        return Response(d)
-
-    if request.user.is_authenticated == False:
-        return Response(
-            {"detail": "Authentication credentials were not provided."}, status=401
-        )
-
-    body = request.data
-    if "name" in body and body["name"] != "":
-        s = Shed()
-        s.name = body["name"]
-        s.suburb = body["suburb"]
-        s.city = body["city"]
-        s.owner = request.user
-        s.save()
-        return Response({
-            "id": s.id,
-            "name": s.name,
-            "suburb": s.suburb,
-            "city": s.city,
-            "tool_count": 0,
-        }, status=201)
-    else:
-        return Response({"detail": "Invalid data."}, status=400)
-
 
 @api_view(["GET", "PUT", "DELETE"])
 def shed_detail(request, id):
