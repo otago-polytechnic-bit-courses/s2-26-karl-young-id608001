@@ -1,21 +1,24 @@
 from rest_framework import serializers
 from .models import Shed, Tool
 
-# Shows one studio
+
 class ShedSerializer(serializers.ModelSerializer):
+    tool_count = serializers.SerializerMethodField()
     class Meta:
         model = Shed
-        fields = ["id", "name", "suburb", "city", "created_at"]
+        fields = ["id", "name", "suburb", "city", "tool_count"]
+
+    def get_tool_count(self, obj):
+        return obj.tools.count()
 
 
-# shows one class
 class ToolSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tool
         fields = ["id", "shed", "name", "description"]
 
 
-# Nested to show one of each 
+
 class ShedDetailSerializer(serializers.ModelSerializer):
     tools = ToolSerializer(many=True, read_only=True)
 
