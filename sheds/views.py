@@ -5,13 +5,14 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from .serializers import ShedSerializer, ToolSerializer, ShedDetailSerializer
+from .permissions import IsOwnerOrStaff
+from .serializers import ShedSerializer, ToolSerializer, ShedDetailSerializer, ShedUpdateSerializer
 from .models import Shed, Tool
 
 
 class ShedViewSet(viewsets.ModelViewSet):
     queryset = Shed.objects.all()
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrStaff]
     
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -19,6 +20,8 @@ class ShedViewSet(viewsets.ModelViewSet):
     def get_serializer_class(self): 
         if self.action == "retrieve":
             return ShedDetailSerializer
+        if self.action == "update":
+            return ShedUpdateSerializer
         return ShedSerializer
 
     def get_queryset(self): 
@@ -35,10 +38,11 @@ class ToolViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self): 
-        if self.request.query_params.get("id"):
-            return self.queryset.filter(id__iexact=self.request.query_params.get("id")) 
-        return self.queryset
-
+        shed_id = self.kwargs.get("id") # AI showed me i needed to use KWargs for the
+        query = super().get_queryset()
+        if shed_id:
+            return query.filter(shed_id=shed_id)
+        return query
 
 
 @api_view(["GET", "PUT", "DELETE"])
@@ -106,23 +110,6 @@ def shed_detail(request, id):
             )
         s.delete()
         return Response(status=204)
-
-
-@api_view(["GET"])
-def tools(request, id):
-    try:
-        s = Shed.objects.get(id=id)
-    except:
-        return Response({"detail": "Not found."}, status=404)
-
-    d = []
-    for t in s.tools.all().order_by("id"):
-        d.append({
-            "id": t.id,
-            "name": t.name,
-            "description": t.description,
-        })
-    return Response(d)
 
 
 @api_view(["POST"])
