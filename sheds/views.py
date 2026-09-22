@@ -29,6 +29,18 @@ class ShedViewSet(viewsets.ModelViewSet):
         return self.queryset
 
 
+class ToolViewSet(viewsets.ModelViewSet):
+    queryset = Tool.objects.all()
+    serializer_class = ToolSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def get_queryset(self): 
+        if self.request.query_params.get("id"):
+            return self.queryset.filter(id__iexact=self.request.query_params.get("id")) 
+        return self.queryset
+
+
+
 @api_view(["GET", "PUT", "DELETE"])
 def shed_detail(request, id):
     try:
