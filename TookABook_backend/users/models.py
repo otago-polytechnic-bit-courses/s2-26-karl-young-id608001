@@ -40,6 +40,7 @@ class Book(models.Model):
 
     genre = models.CharField(
             max_length=100,
+            choices=Genre.choices,
             blank=True
         )
     
