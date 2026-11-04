@@ -1,10 +1,9 @@
 from rest_framework import viewsets
 from rest_framework.permissions import (
-    IsAuthenticatedOrReadOnly,
+    IsAuthenticated,
 )
 from .permissions import IsOwnerOrReadOnly
 
-# from .permissions import IsOwnerOrReadOnly
 from .models import Book
 from .serializers import (
     BookSerializer,
@@ -15,7 +14,7 @@ from .serializers import (
 class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()
     permission_classes = [
-        IsAuthenticatedOrReadOnly,
+        IsAuthenticated,
         IsOwnerOrReadOnly,
     ]
 
