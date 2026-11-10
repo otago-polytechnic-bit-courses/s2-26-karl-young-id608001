@@ -1,6 +1,7 @@
 import { useFocusEffect, router, Link } from 'expo-router'
 import { useCallback, useState } from 'react'
-import { getBooks, Book } from '../api/booksApi'
+import { getBooks, Book } from '../../api/booksApi'
+import { Colors } from '../../theme/colours'
 
 import {
   FlatList,
@@ -11,7 +12,7 @@ import {
   View,
 } from 'react-native'
 
-import { clearToken, getToken } from '../api/auth'
+import { clearToken, getToken } from '../../api/auth'
 
 export default function LibraryScreen() {
   const [error, setError] = useState<string | null>(null)
@@ -121,7 +122,7 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     paddingHorizontal: 12,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: '#d1d5db',
+    borderBottomColor: Colors.border,
   },
 
   rowText: {
@@ -131,13 +132,13 @@ const styles = StyleSheet.create({
 
   rowMeta: {
     fontSize: 13,
-    color: '#6b7280',
+    color: Colors.textSecondary,
     marginTop: 2,
   },
 
   empty: {
     textAlign: 'center',
-    color: '#6b7280',
+    color: Colors.textSecondary,
     padding: 24,
   },
 
@@ -154,7 +155,7 @@ const styles = StyleSheet.create({
   },
 
   logoutText: {
-    color: '#dc2626',
+    color: Colors.logout,
     fontWeight: '600',
   },
 })

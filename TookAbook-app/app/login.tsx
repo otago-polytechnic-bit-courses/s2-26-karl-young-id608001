@@ -9,6 +9,7 @@ import {
 } from 'react-native'
 import { login } from '../api/auth'
 import { router } from 'expo-router'
+import { Colors } from '../theme/colours'
 
 export default function loginScreen() {
   const [username, setUsername] = useState('')
@@ -22,7 +23,7 @@ export default function loginScreen() {
 
     login(username, password)
       .then(() => {
-        router.replace('/')
+        router.replace('/(tabs)')
       })
       .catch((err) => {
         setError('Invalid username or password.')
@@ -107,17 +108,17 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: Colors.border,
     borderRadius: 8,
     padding: 12,
     marginBottom: 12,
   },
   error: {
-    color: 'red',
+    color: Colors.danger,
     marginBottom: 12,
   },
   button: {
-    backgroundColor: '#00beef',
+    backgroundColor: Colors.BtnBlue,
     borderRadius: 8,
     padding: 14,
     alignItems: 'center',
@@ -126,6 +127,6 @@ const styles = StyleSheet.create({
   linkText: {
     marginTop: 16,
     textAlign: 'center',
-    color: '#0066cc',
+    color: Colors.link,
   },
 })
