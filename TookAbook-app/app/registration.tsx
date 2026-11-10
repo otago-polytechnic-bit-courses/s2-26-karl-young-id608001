@@ -8,6 +8,7 @@ import {
   View,
 } from 'react-native'
 
+import { Colors } from '../theme/colours'
 import { register } from '../api/auth'
 import { router } from 'expo-router'
 
@@ -40,6 +41,11 @@ export default function RegisterScreen() {
 
     if (!password) {
       setError('Password is required.')
+      return
+    }
+
+    if (password.length < 8) {
+      setError('Password must be at least 8 characters long.')
       return
     }
 
@@ -151,17 +157,17 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: Colors.border,
     borderRadius: 8,
     padding: 12,
     marginBottom: 12,
   },
   error: {
-    color: 'red',
+    color: Colors.danger,
     marginBottom: 12,
   },
   button: {
-    backgroundColor: '#00beef',
+    backgroundColor: Colors.BtnBlue,
     borderRadius: 8,
     padding: 14,
     alignItems: 'center',
@@ -173,6 +179,6 @@ const styles = StyleSheet.create({
   link: {
     marginTop: 16,
     textAlign: 'center',
-    color: '#007AFF',
+    color: Colors.link,
   },
 })
