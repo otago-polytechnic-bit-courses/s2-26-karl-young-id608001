@@ -1,13 +1,26 @@
 import { router, Stack } from 'expo-router'
-import { clearToken } from '../api/auth'
+import { Colors } from '../theme/colours'
 
 export default function RootLayout() {
-  async function handleLogout() {
-    await clearToken()
-    router.replace('/login')
-  }
   return (
-    <Stack>
+    <Stack
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: Colors.surface,
+        },
+
+        headerTintColor: Colors.text,
+
+        headerTitleStyle: {
+          color: Colors.text,
+          fontWeight: '600',
+        },
+
+        contentStyle: {
+          backgroundColor: Colors.background,
+        },
+      }}
+    >
       <Stack.Screen name="login" options={{ title: 'Log in' }} />
       <Stack.Screen name="registration" options={{ title: 'Register' }} />
       <Stack.Screen
