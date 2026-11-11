@@ -2,6 +2,7 @@ import { useFocusEffect, router, Link } from 'expo-router'
 import { useCallback, useState } from 'react'
 import { getBooks, Book } from '../../api/booksApi'
 import { Colors } from '../../theme/colours'
+import BookCard from '../components/BookCards'
 
 import {
   FlatList,
@@ -12,7 +13,7 @@ import {
   View,
 } from 'react-native'
 
-import { clearToken, getToken } from '../../api/auth'
+import { getToken } from '../../api/auth'
 
 export default function LibraryScreen() {
   const [error, setError] = useState<string | null>(null)
@@ -59,11 +60,6 @@ export default function LibraryScreen() {
     }, []),
   )
 
-  async function handleLogout() {
-    await clearToken()
-    router.replace('/login')
-  }
-
   if (loading) {
     return (
       <View style={[styles.container, styles.horizontal]}>
@@ -82,64 +78,25 @@ export default function LibraryScreen() {
 
   return (
     <View style={styles.container}>
-      <FlatList
-        contentContainerStyle={styles.list}
-        data={books}
-        keyExtractor={(item) => String(item.id)}
-        renderItem={({ item }) => (
-          <Link href={`/books/${item.id}`} asChild>
-            <Pressable style={styles.row}>
-              <Text style={styles.rowText}>{item.title}</Text>
+      <Text style={styles.heading}>Continue Reading</Text>
 
-              <Text style={styles.rowMeta}>
-                {item.author || 'Unknown Author'}
-              </Text>
-
-              <Text style={styles.rowMeta}>{item.genre}</Text>
-            </Pressable>
-          </Link>
-        )}
-        ListEmptyComponent={
-          <Text style={styles.empty}>No books uploaded yet.</Text>
-        }
-      />
-
-      <Pressable style={styles.logout} onPress={handleLogout}>
-        <Text style={styles.logoutText}>Log out</Text>
-      </Pressable>
+      <Text style={styles.heading}>Recently Added</Text>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
-
+  container: { flex: 1, backgroundColor: Colors.background },
   list: {
     padding: 16,
   },
-
-  row: {
-    paddingVertical: 14,
-    paddingHorizontal: 12,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: Colors.border,
-  },
-
-  rowText: {
-    fontSize: 16,
+  heading: {
+    fontSize: 18,
     fontWeight: '600',
-  },
-
-  rowMeta: {
-    fontSize: 13,
-    color: Colors.textSecondary,
-    marginTop: 2,
-  },
-
-  empty: {
-    textAlign: 'center',
-    color: Colors.textSecondary,
-    padding: 24,
+    marginTop: 16,
+    marginBottom: 8,
+    paddingHorizontal: 16,
+    color: Colors.text,
   },
 
   horizontal: {
@@ -148,12 +105,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
   },
-
   logout: {
     padding: 16,
     alignItems: 'center',
   },
-
   logoutText: {
     color: Colors.logout,
     fontWeight: '600',
