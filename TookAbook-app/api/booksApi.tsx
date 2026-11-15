@@ -1,5 +1,7 @@
 import { clearToken, getToken, refreshAccessToken } from './auth'
 import { Book } from '../utils/interfaces'
+import { fetch } from 'expo/fetch'
+
 const BASE_URL = process.env.EXPO_PUBLIC_API_URL
 
 async function apiFetch(
@@ -65,7 +67,7 @@ export async function getBook(id: string): Promise<Book> {
 export async function uploadBook(formData: FormData) {
   const token = await getToken()
 
-  const response = await fetch(`${BASE_URL}/api/books/upload/`, {
+  const response = await fetch(`${BASE_URL}/api/books/`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${token}`,
@@ -74,7 +76,8 @@ export async function uploadBook(formData: FormData) {
   })
 
   if (!response.ok) {
-    throw new Error('Could not upload book')
+    const errorText = await response.text()
+    throw new Error(errorText)
   }
 
   return response.json()
