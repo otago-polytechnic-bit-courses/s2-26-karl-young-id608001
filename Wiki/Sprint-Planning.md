@@ -50,13 +50,12 @@ Users can upload books directly from the application and open books from their p
 
 ### Supporting Tasks
 - Create Upload Book Screen
-- Create Book Upload API Endpoint
 - Implement File Picker
 - Connect Upload Screen to API
 - Validate Uploaded File Types
-- Refresh Library After Upload
+- Update Library After Upload
 - Create Reader Screen
-- Add Book Selection Navigation
+- Open books from library
 - Display Content
 - Handle Reader Errors
 
@@ -67,16 +66,15 @@ Users can upload books directly from the application and open books from their p
 Total: 13 Points
 
 ### Sequencing
-1. Create Book Upload API Endpoint
-2. Create Upload Book Screen
-3. Implement File Picker
-4. Connect Upload Screen to API
-5. Validate Uploaded File Types
-6. Refresh Library After Upload
-7. Create Reader Screen
-8. Add Book Selection Navigation
-9. Display PDF Content
-10. Handle Reader Errors
+1. Create Upload Book Screen
+2. Implement File Picker
+3. Connect Upload Screen to API
+4. Validate Uploaded File Types
+5. Update Library After Upload
+6. Create Reader Screen
+7. Open books from library
+8. Display Content
+9. Handle Reader Errors
 
 ### Rationale
 Sprint 2 focuses on completing the application's book management flow, uploading and reading books. While books can currently be added through the Django backend established in Sprint 1, users cannot yet upload books directly from the react native frontend. Adding upload functionality lets users manage their own content without admin intervention and keep their books organised, thereby completing the Upload Books requirement.
