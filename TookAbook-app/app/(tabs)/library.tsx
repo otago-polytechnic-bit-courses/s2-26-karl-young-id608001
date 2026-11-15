@@ -1,6 +1,7 @@
 import { useFocusEffect, router, Link } from 'expo-router'
 import { useCallback, useState } from 'react'
-import { getBooks, Book } from '../../api/booksApi'
+import { getBooks } from '../../api/booksApi'
+import { Book } from '../../utils/interfaces'
 import BookCard from '../components/BookCards'
 import { Colors } from '../../theme/colours'
 import {
