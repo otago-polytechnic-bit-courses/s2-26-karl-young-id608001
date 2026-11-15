@@ -24,7 +24,7 @@ const EMPTY_FORM: BookFormValues = {
   author: '',
   genre: '',
 }
-const MAX_BOOK_SIZE = 200 * 1024 * 1024 // 200 MB
+const MAX_BOOK_SIZE = 100 * 1024 * 1024 // 100 MB
 
 export default function UploadScreen() {
   const [success, setSuccess] = useState('')
@@ -48,7 +48,7 @@ export default function UploadScreen() {
     const asset = result.assets[0]
     // Check if file is too big
     if ((asset.size ?? 0) > MAX_BOOK_SIZE) {
-      setError('Books must be smaller than 200 MB.')
+      setError('Books must be smaller than 100 MB.')
       return
     }
 
@@ -179,7 +179,7 @@ export default function UploadScreen() {
         ))}
       </Picker>
 
-      <Text style={styles.label}>Book File (Less than 200Mb)</Text>
+      <Text style={styles.label}>Book File (Less than 100Mb)</Text>
 
       <Pressable style={styles.fileButton} onPress={pickBook}>
         <Text style={styles.buttonText}>Select Book</Text>
