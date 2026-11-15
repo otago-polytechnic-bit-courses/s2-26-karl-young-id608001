@@ -47,6 +47,7 @@ export default function UploadScreen() {
 
     if (values.title.trim().length < 3) {
       setError('Title must be at least 3 characters.')
+      return
     }
 
     if (!selectedFile) {
