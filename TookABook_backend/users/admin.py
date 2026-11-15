@@ -27,5 +27,5 @@ class BookAdmin(admin.ModelAdmin):
         "author",
         "owner__username",
     )
-    readonly_fields = ("upload_date",)
+    readonly_fields = ("upload_date","file_type",)
     ordering = ("-upload_date",)

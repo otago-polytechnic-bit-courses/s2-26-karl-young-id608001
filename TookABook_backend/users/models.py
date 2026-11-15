@@ -39,19 +39,26 @@ class Book(models.Model):
     author = models.CharField(max_length=255, blank=True)
 
     genre = models.CharField(
-            max_length=100,
-            choices=Genre.choices,
-            blank=True
-        )
-    
+        max_length=100,
+        choices=Genre.choices,
+        blank=True
+    )
+
     file = models.FileField(upload_to="books/")
     upload_date = models.DateTimeField(auto_now_add=True)
     file_type = models.CharField(max_length=50, blank=True)
+
     cover_image = models.ImageField(
-      upload_to="covers/",
-      blank=True,
-      null=True
-      )
-    
+        upload_to="covers/",
+        blank=True,
+        null=True
+    )
+
+    def save(self, *args, **kwargs):
+        if self.file:
+            self.file_type = self.file.name.split('.')[-1].lower()
+
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return self.title
