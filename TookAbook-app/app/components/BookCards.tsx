@@ -1,12 +1,7 @@
 import { View, Text, StyleSheet, Image } from 'react-native'
 import { Colors } from '../../theme/colours'
+import { BookCardProps } from '../../utils/interfaces'
 
-interface BookCardProps {
-  title: string
-  author?: string
-  genre?: string
-  coverImage?: string | null
-}
 let placeholderImage = require('../../assets/book-cover-placeholder.png')
 
 export default function BookCard({

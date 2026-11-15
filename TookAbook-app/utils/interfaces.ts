@@ -14,6 +14,16 @@ export const GENRES = [
   { label: 'Other', value: 'other' },
 ]
 
+export const AllowedBookExtensions = [
+  'epub',
+  'pdf',
+  'cbz',
+  'cbr',
+  'azw3',
+  'mobi',
+  'fb2',
+  'txt',
+]
 export interface BookFormValues {
   title: string
   author: string
@@ -30,4 +40,9 @@ export interface Book {
   upload_date: string
 }
 
-
+export interface BookCardProps {
+  title: string
+  author?: string
+  genre?: string
+  coverImage?: string | null
+}
