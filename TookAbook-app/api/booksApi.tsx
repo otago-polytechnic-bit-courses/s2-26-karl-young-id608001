@@ -1,5 +1,5 @@
 import { clearToken, getToken, refreshAccessToken } from './auth'
-
+import { Book } from '../utils/interfaces'
 const BASE_URL = process.env.EXPO_PUBLIC_API_URL
 
 async function apiFetch(
@@ -40,16 +40,6 @@ async function apiFetch(
   }
 
   return response
-}
-
-export interface Book {
-  id: number
-  title: string
-  author: string
-  genre: string
-  file: string
-  cover_image?: string | null
-  upload_date: string
 }
 
 export async function getBooks(): Promise<Book[]> {
