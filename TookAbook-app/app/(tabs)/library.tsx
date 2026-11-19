@@ -85,7 +85,7 @@ export default function LibraryScreen() {
         data={books}
         keyExtractor={(item) => String(item.id)}
         renderItem={({ item }) => (
-          <Link href={`/books/${item.id}`} asChild>
+          <Link href={`/reader/${item.id}`} asChild>
             <Pressable>
               <BookCard
                 title={item.title}
