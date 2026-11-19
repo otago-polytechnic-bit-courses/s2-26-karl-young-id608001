@@ -30,12 +30,23 @@ export interface BookFormValues {
   genre: string
 }
 
+export type BookFileType =
+  | 'epub'
+  | 'pdf'
+  | 'cbz'
+  | 'cbr'
+  | 'azw3'
+  | 'mobi'
+  | 'fb2'
+  | 'txt'
+
 export interface Book {
   id: number
   title: string
   author: string
   genre: string
   file: string
+  file_type: BookFileType
   cover_image?: string | null
   upload_date: string
 }
