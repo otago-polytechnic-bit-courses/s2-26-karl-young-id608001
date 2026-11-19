@@ -131,7 +131,10 @@ export default function UploadScreen() {
       setSelectedCover(null)
       setError(null)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Could not upload book')
+      console.error(err)
+      setError(
+        'Could not upload book. Please check your internet connection and try again.',
+      )
     } finally {
       setIsSubmitting(false)
     }
