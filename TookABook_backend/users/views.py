@@ -1,6 +1,8 @@
 from rest_framework import viewsets
+from rest_framework.views import APIView
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from django.core.files.base import ContentFile
 from rest_framework.permissions import (
     IsAuthenticated,
 );
@@ -64,3 +66,52 @@ class BookViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(author__icontains=author)
 
         return queryset
+
+class BookUploadView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        try:
+            filename = request.headers.get("X-Filename")
+            title = request.headers.get("X-Title")
+            author = request.headers.get("X-Author")
+            genre = request.headers.get("X-Genre")
+
+            if not filename:
+                return Response(
+                    {"error": "Missing filename"},
+                    status=400,
+                )
+
+            print("Filename:", filename)
+            print("Title:", title)
+            print("Author:", author)
+            print("Genre:", genre)
+            print("Body size:", len(request.body))
+
+            book = Book.objects.create(
+                owner=request.user,
+                title=title or filename,
+                author=author or "",
+                genre=genre or "",
+            )
+
+            book.file.save(
+                filename,
+                ContentFile(request.body),
+                save=True,
+            )
+
+            return Response({
+                "success": True,
+                "id": book.id,
+                "title": book.title,
+            })
+
+        except Exception as e:
+            print("UPLOAD ERROR:", repr(e))
+
+            return Response(
+                {"error": str(e)},
+                status=500,
+            )
