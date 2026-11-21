@@ -79,10 +79,12 @@ export default function LibraryScreen() {
   return (
     <View style={styles.container}>
       <FlatList
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.list}
         data={books}
+        numColumns={2}
+        columnWrapperStyle={{
+          justifyContent: 'space-between',
+        }}
+        contentContainerStyle={styles.list}
         keyExtractor={(item) => String(item.id)}
         renderItem={({ item }) => (
           <Link href={`/reader/${item.id}`} asChild>
@@ -106,39 +108,17 @@ export default function LibraryScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: Colors.background },
-
   list: {
-    padding: 16,
+    padding: 26,
   },
-
-  row: {
-    paddingVertical: 14,
-    paddingHorizontal: 12,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: Colors.border,
-  },
-
-  rowText: {
-    fontSize: 16,
-    fontWeight: '600',
-  },
-
-  rowMeta: {
-    fontSize: 13,
-    color: Colors.textSecondary,
-    marginTop: 2,
-  },
-
   empty: {
     textAlign: 'center',
     color: Colors.textSecondary,
     padding: 24,
   },
-
   horizontal: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     alignItems: 'center',
-    padding: 10,
+    flex: 1,
   },
 })

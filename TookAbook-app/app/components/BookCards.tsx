@@ -37,12 +37,12 @@ export default function BookCard({
 
 const styles = StyleSheet.create({
   card: {
-    width: 140,
-    marginRight: 16,
+    width: 160,
+    marginBottom: 16,
   },
   cover: {
     width: '100%',
-    height: 200,
+    height: 240,
     borderRadius: 12,
   },
   coverPlaceholder: {
