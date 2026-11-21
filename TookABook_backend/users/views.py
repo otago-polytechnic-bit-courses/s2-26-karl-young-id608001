@@ -1,9 +1,14 @@
 from rest_framework import viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
 from rest_framework.permissions import (
     IsAuthenticated,
-)
+);
+from .utils.book_converter import get_book_pages
 from .permissions import IsOwnerOrReadOnly
-
+from .utils.book_converter import (
+    convert_pdf_to_images,
+)
 from .models import Book
 from .serializers import (
     BookSerializer,
@@ -26,6 +31,22 @@ class BookViewSet(viewsets.ModelViewSet):
             return BookDetailSerializer
         return BookSerializer
 
+    @action(
+        detail=True,
+        methods=["get"],
+    )
+
+    def pages(self, request, pk=None):
+        book = self.get_object()
+
+        pages = get_book_pages(book)
+
+        return Response({
+            "id": book.id,
+            "title": book.title,
+            "pages": pages,
+        })
+    
     def get_queryset(self):
         queryset = Book.objects.filter(owner=self.request.user)
 
