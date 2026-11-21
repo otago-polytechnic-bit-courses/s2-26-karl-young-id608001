@@ -82,3 +82,13 @@ export async function uploadBook(formData: FormData) {
 
   return response.json()
 }
+
+export async function getBookPages(id: string) {
+  const response = await apiFetch(`/books/${id}/pages/`)
+
+  if (!response.ok) {
+    throw new Error('Could not load book pages')
+  }
+
+  return response.json()
+}
