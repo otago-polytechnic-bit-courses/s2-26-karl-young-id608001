@@ -126,19 +126,16 @@ def extract_cbz_pages(book):
 
     # Image files only
     pages = sorted(
-        [
-            file
-            for file in output_dir.iterdir()
-            if file.is_file()
-            and file.suffix.lower()
-            in [
-                ".jpg",
-                ".jpeg",
-                ".png",
-                ".webp",
-            ]
-        ]
-    )
+    [
+        file
+        for file in output_dir.rglob("*")
+        if file.is_file()
+        and file.suffix.lower() in (
+            ".jpg", ".jpeg", ".png", ".webp"
+        )
+    ],
+    key=lambda file: str(file.relative_to(output_dir)).lower(),
+)
 
     # MARK CACHE COMPLETE
     complete_marker.touch()
