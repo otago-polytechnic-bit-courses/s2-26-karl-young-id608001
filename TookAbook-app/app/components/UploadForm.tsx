@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { uploadBook } from '../../api/booksApi'
+import { uploadBookFile } from '../../api/booksApi'
 import { Colors } from '../../theme/colours'
 import { Picker } from '@react-native-picker/picker'
 import * as DocumentPicker from 'expo-document-picker'
@@ -48,7 +48,7 @@ export default function UploadScreen() {
     const asset = result.assets[0]
     // Check if file is too big
     if ((asset.size ?? 0) > MAX_BOOK_SIZE) {
-      setError('Books must be smaller than 100 MB.')
+      setError('Books must be smaller than 60 MB.')
       return
     }
 
@@ -106,35 +106,23 @@ export default function UploadScreen() {
     try {
       setIsSubmitting(true)
 
-      const formData = new FormData()
-      const fileResponse = await fetch(selectedFile.uri)
-      const fileBlob = await fileResponse.blob()
-
-      formData.append('title', values.title)
-      formData.append('author', values.author)
-      formData.append('genre', values.genre)
-      formData.append('file', fileBlob, selectedFile.name)
-
-      if (selectedCover) {
-        formData.append(
-          'cover_image',
-          new File(selectedCover.uri),
-          selectedCover.fileName || 'cover.png',
-        )
-      }
-
-      await uploadBook(formData)
+      await uploadBookFile(
+        selectedFile,
+        values.title,
+        values.author,
+        values.genre,
+      )
 
       setSuccess('Book uploaded successfully.')
+
       setValues(EMPTY_FORM)
       setSelectedFile(null)
       setSelectedCover(null)
       setError(null)
     } catch (err) {
       console.error(err)
-      setError(
-        'Could not upload book. Please check your internet connection and try again.',
-      )
+
+      setError('ArrayBuffer test failed.')
     } finally {
       setIsSubmitting(false)
     }

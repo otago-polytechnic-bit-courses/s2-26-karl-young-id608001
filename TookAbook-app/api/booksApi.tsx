@@ -1,6 +1,7 @@
 import { clearToken, getToken, refreshAccessToken } from './auth'
 import { Book } from '../utils/interfaces'
 import { fetch } from 'expo/fetch'
+import * as DocumentPicker from 'expo-document-picker'
 
 const BASE_URL = process.env.EXPO_PUBLIC_API_URL
 
@@ -64,24 +65,24 @@ export async function getBook(id: string): Promise<Book> {
   return response.json()
 }
 
-export async function uploadBook(formData: FormData) {
-  const token = await getToken()
+// export async function uploadBook(formData: FormData) {
+//   const token = await getToken()
 
-  const response = await fetch(`${BASE_URL}/api/books/`, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-    body: formData,
-  })
+//   const response = await fetch(`${BASE_URL}/api/books/`, {
+//     method: 'POST',
+//     headers: {
+//       Authorization: `Bearer ${token}`,
+//     },
+//     body: formData,
+//   })
 
-  if (!response.ok) {
-    const errorText = await response.text()
-    throw new Error(errorText)
-  }
+//   if (!response.ok) {
+//     const errorText = await response.text()
+//     throw new Error(errorText)
+//   }
 
-  return response.json()
-}
+//   return response.json()
+// }
 
 export async function getBookPages(id: string) {
   const response = await apiFetch(`/books/${id}/pages/`)
@@ -91,4 +92,50 @@ export async function getBookPages(id: string) {
   }
 
   return response.json()
+}
+
+export async function uploadBookFile(
+  selectedFile: DocumentPicker.DocumentPickerAsset,
+  title: string,
+  author: string,
+  genre: string,
+) {
+  const token = await getToken()
+
+  const response = await fetch(
+    selectedFile.uri,
+  )
+
+  const buffer =
+    await response.arrayBuffer()
+
+  const upload = await fetch(
+    `${BASE_URL}/api/books/upload/`,
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type':
+          selectedFile.mimeType ??
+          'application/octet-stream',
+
+        'X-Filename':
+          selectedFile.name,
+
+        'X-Title': title,
+        'X-Author': author,
+        'X-Genre': genre,
+      },
+      body: buffer,
+    },
+  )
+
+  if (!upload.ok) {
+    const errorText =
+      await upload.text()
+
+    throw new Error(errorText)
+  }
+
+  return upload.json()
 }
