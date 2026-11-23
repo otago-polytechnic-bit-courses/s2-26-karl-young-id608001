@@ -1,7 +1,6 @@
 import { clearToken, getToken, refreshAccessToken } from './auth'
 import { Book } from '../utils/interfaces'
 import { fetch } from 'expo/fetch'
-import * as DocumentPicker from 'expo-document-picker'
 
 const BASE_URL = process.env.EXPO_PUBLIC_API_URL
 
@@ -12,7 +11,9 @@ async function apiFetch(
   const token = await getToken()
 
   const headers: Record<string, string> = {
-    'Content-Type': 'application/json',
+    ...(options.body instanceof FormData
+      ? {}
+      : { 'Content-Type': 'application/json' }),
     ...(options.headers as Record<string, string>),
   }
 
@@ -66,13 +67,8 @@ export async function getBook(id: string): Promise<Book> {
 }
 
 export async function uploadBook(formData: FormData) {
-  const token = await getToken()
-
-  const response = await fetch(`${BASE_URL}/api/books/`, {
+  const response = await apiFetch('/books/', {
     method: 'POST',
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
     body: formData,
   })
 
