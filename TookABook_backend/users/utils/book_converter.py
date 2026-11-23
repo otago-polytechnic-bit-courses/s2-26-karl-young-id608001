@@ -92,11 +92,12 @@ def extract_cbz_pages(book):
     existing_pages = sorted(
         [
             file
-            for file in output_dir.iterdir()
+            for file in output_dir.rglob("*")
             if file.is_file()
             and file.suffix.lower()
             in [".jpg", ".jpeg", ".png", ".webp"]
-        ]
+        ],
+        key=lambda file: file.relative_to(output_dir).as_posix().casefold(),
     )
 
     # Cache check 
@@ -106,7 +107,8 @@ def extract_cbz_pages(book):
     ):
         return [
             f"{settings.MEDIA_URL}"
-            f"pages/book_{book.id}/{page.name}"
+            f"pages/book_{book.id}/"
+            f"{page.relative_to(output_dir).as_posix()}"
             for page in existing_pages
         ]
 
@@ -135,13 +137,14 @@ def extract_cbz_pages(book):
         )
     ],
     key=lambda file: str(file.relative_to(output_dir)).lower(),
-)
+    )
 
     # MARK CACHE COMPLETE
     complete_marker.touch()
 
     return [
         f"{settings.MEDIA_URL}"
-        f"pages/book_{book.id}/{page.name}"
+        f"pages/book_{book.id}/"
+        f"{page.relative_to(output_dir).as_posix()}"
         for page in pages
     ]
