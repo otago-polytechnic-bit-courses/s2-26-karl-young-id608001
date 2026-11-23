@@ -8,17 +8,25 @@ const BASE_URL = process.env.EXPO_PUBLIC_API_URL
 export function ComicReader({ book }: { book: Book }) {
   const [pages, setPages] = useState<string[]>([])
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    getBookPages(String(book.id))
-      .then((data) => setPages(data.pages))
-      .catch(() => setError(true))
-      .finally(() => setLoading(false))
+    async function loadPages() {
+      try {
+        const data = await getBookPages(String(book.id))
+        setPages(data.pages)
+      } catch {
+        setError('Could not load pages.')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    void loadPages()
   }, [book.id])
 
   if (loading) return <ActivityIndicator size="large" />
-  if (error) return <Text>Could not load comic pages.</Text>
+  if (error) return <Text>{error}</Text>
 
   return (
     <FlatList

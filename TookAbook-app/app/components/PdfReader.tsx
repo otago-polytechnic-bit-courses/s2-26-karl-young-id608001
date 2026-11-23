@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ActivityIndicator, FlatList, Image, View } from 'react-native'
+import { ActivityIndicator, FlatList, Image, View, Text } from 'react-native'
 
 import { Book } from '../../utils/interfaces'
 import { getBookPages } from '../../api/booksApi'
@@ -32,9 +32,7 @@ export function PdfReader({ book }: { book: Book }) {
     return <ActivityIndicator size="large" />
   }
 
-  if (error) {
-    return <View />
-  }
+  if (error) return <Text>{error}</Text>
 
   return (
     <FlatList
