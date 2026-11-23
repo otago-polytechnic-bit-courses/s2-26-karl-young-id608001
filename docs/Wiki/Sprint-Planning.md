@@ -87,6 +87,44 @@ This reduces project risk by validating the application's most important functio
 
 ---
 
+## Sprint 3 - Reading Experience
 
+### Goal
+Users can continue reading from where they left off on the home page and save important pages as bookmarks as needed.
+
+### Requirements
+Remember Reading Progress #4
+Bookmark Pages #5
+
+### Supporting Tasks
+1. Implement reading progress functionality
+2. Implement bookmark functionality
+3. Implement Continue Reading section
+4. Test and verify reading progress and bookmarks
+
+### Estimates
+- Remember Reading Progress = 3 Points
+- Bookmark Pages = 5 Points
+
+Total: 8 Points
+
+### Sequencing
+- Implement reading progress saving and loading
+- Implement bookmark creation and deletion
+- Implement Continue Reading section
+- Test and verify both requirements
+
+### Rationale
+
+Sprint 3 focuses on making the reading experience more practical for users. 
+Users can upload and open books, but they still need to manually find their place every time they return to a book.
+
+Remembering reading progress is implemented first because it builds on the existing reader functionality, allows users to continue from where they left off and makes the app more usable. This also supports the Continue Reading section planned for the Home screen.
+
+Bookmarking pages is included because it gives users a quick way to return to important pages without having to remember page numbers or search through an entire book. This is especially useful for students using the application for study purposes.
+
+Together, these features make the application more convenient to use and build on the core reading functionality completed in Sprint 2. They also provide a more complete reading experience.
+
+---
 
 
