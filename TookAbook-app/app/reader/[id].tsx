@@ -5,7 +5,6 @@ import { Book } from '../../utils/interfaces'
 import { ActivityIndicator, Text, View } from 'react-native'
 import { ComicReader } from '../components/ComicReader'
 import { PdfReader } from '../components/PdfReader'
-import { EpubReader } from '../components/EpubReader'
 
 export default function ReaderScreen() {
   const { id } = useLocalSearchParams()
@@ -44,9 +43,6 @@ export default function ReaderScreen() {
   switch (book.file_type) {
     case 'pdf':
       return <PdfReader book={book} />
-
-    case 'epub':
-      return <EpubReader book={book} />
 
     case 'cbz':
       return <ComicReader book={book} />
