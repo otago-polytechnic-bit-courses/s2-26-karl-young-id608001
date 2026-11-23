@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { uploadBookFile } from '../../api/booksApi'
+import { uploadBook } from '../../api/booksApi'
 import { Colors } from '../../theme/colours'
 import { Picker } from '@react-native-picker/picker'
 import * as DocumentPicker from 'expo-document-picker'
@@ -24,7 +24,8 @@ const EMPTY_FORM: BookFormValues = {
   author: '',
   genre: '',
 }
-const MAX_BOOK_SIZE = 100 * 1024 * 1024 // 100 MB
+
+const MAX_BOOK_SIZE = 60 * 1024 * 1024 // 60 MB
 
 export default function UploadScreen() {
   const [success, setSuccess] = useState('')
@@ -55,9 +56,7 @@ export default function UploadScreen() {
     const extension = result.assets[0].name.split('.').pop()?.toLowerCase()
 
     if (!AllowedBookExtensions.includes(extension ?? '')) {
-      setError(
-        'Only PDF, EPUB, MOBI, CBZ, CBR, AZW3, FB2 and TXT files are supported.',
-      )
+      setError('Only PDF files are supported.')
       return
     }
 
@@ -106,23 +105,41 @@ export default function UploadScreen() {
     try {
       setIsSubmitting(true)
 
-      await uploadBookFile(
-        selectedFile,
-        values.title,
-        values.author,
-        values.genre,
-      )
+      const formData = new FormData()
+      const fileResponse = await fetch(selectedFile.uri)
+
+      if (!fileResponse.ok) {
+        throw new Error(
+          `Could not read the selected book (${fileResponse.status})`,
+        )
+      }
+
+      const fileBlob = await fileResponse.blob()
+
+      formData.append('title', values.title)
+      formData.append('author', values.author)
+      formData.append('genre', values.genre)
+      formData.append('file', fileBlob, selectedFile.name)
+
+      if (selectedCover) {
+        const coverFile = new File(selectedCover.uri)
+
+        formData.append(
+          'cover_image',
+          coverFile,
+          selectedCover.fileName ?? coverFile.name,
+        )
+      }
+
+      await uploadBook(formData)
 
       setSuccess('Book uploaded successfully.')
-
       setValues(EMPTY_FORM)
       setSelectedFile(null)
       setSelectedCover(null)
       setError(null)
     } catch (err) {
-      console.error(err)
-
-      setError('ArrayBuffer test failed.')
+      setError(err instanceof Error ? err.message : 'Could not upload book')
     } finally {
       setIsSubmitting(false)
     }
@@ -170,7 +187,7 @@ export default function UploadScreen() {
         ))}
       </Picker>
 
-      <Text style={styles.label}>Book File (Less than 100Mb)</Text>
+      <Text style={styles.label}>Book File (Less than 60Mb)</Text>
 
       <Pressable style={styles.fileButton} onPress={pickBook}>
         <Text style={styles.buttonText}>Select Book</Text>
