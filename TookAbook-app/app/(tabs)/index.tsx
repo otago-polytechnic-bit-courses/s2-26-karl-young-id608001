@@ -19,6 +19,10 @@ export default function LibraryScreen() {
   const [error, setError] = useState<string | null>(null)
   const [books, setBooks] = useState<Book[]>([])
   const [loading, setLoading] = useState(true)
+  const latestBook = [...books].sort(
+    (a, b) =>
+      new Date(b.upload_date).getTime() - new Date(a.upload_date).getTime(),
+  )[0]
 
   useFocusEffect(
     useCallback(() => {
@@ -80,13 +84,36 @@ export default function LibraryScreen() {
     <View style={styles.container}>
       <Text style={styles.heading}>Continue Reading</Text>
 
-      <Text style={styles.heading}>Recently Added</Text>
+      <View style={styles.recentCard}>
+        <Text style={styles.heading}>Recently Added</Text>
+        {latestBook && (
+          <Link href={`/reader/${latestBook.id}`} asChild>
+            <Pressable>
+              <BookCard
+                title={latestBook.title}
+                author={latestBook.author}
+                genre={latestBook.genre}
+                coverImage={latestBook.cover_image}
+              />
+            </Pressable>
+          </Link>
+        )}
+      </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: Colors.background },
+  recentCard: {
+    width: '90%',
+    marginTop: 16,
+    alignSelf: 'center',
+    alignItems: 'center',
+    paddingVertical: 20,
+    borderRadius: 12,
+    backgroundColor: Colors.surface,
+  },
   list: {
     padding: 16,
   },
@@ -97,6 +124,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     paddingHorizontal: 16,
     color: Colors.text,
+    textAlign: 'center',
   },
 
   horizontal: {
