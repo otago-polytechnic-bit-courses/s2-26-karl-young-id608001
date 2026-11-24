@@ -44,11 +44,8 @@ npx expo start -c
 
 All project documentation can be found in:
 
-```text
-docs/
-Or:
-[The Wiki](https://github.com/otago-polytechnic-bit-courses/s2-26-karl-young-id608001/wiki)
-```
+[The Wiki](https://github.com/otago-polytechnic-bit-courses/s2-26-karl-young-id608001/wiki) &  the docs/ folder
+
 
 ### Releases
 
