@@ -107,4 +107,4 @@ Karl Young
 
 Bachelor of Information Technology
 
-InterApp Development Project
+Intermediate App Development Project
