@@ -1,4 +1,3 @@
-# UAT Feedback Form
 
 ## Rating Scale
 
@@ -22,17 +21,17 @@
 
 How easy was it to complete this task?
 
-Score:
+Score: 5
 
 Was it clear what the app was doing?
 
-Score:
+Score: 5
 
 How confident are you that you successfully accessed your own library?
 
-Score:
+Score: 5
 
-Comments:
+Comments: Text is visible alongside the library symbol
 
 ---
 
@@ -40,13 +39,13 @@ Comments:
 
 Was the error message easy to understand?
 
-Score:
+Score: 5
 
 Did you understand why the login failed?
 
-Score:
+Score: 5
 
-Comments:
+Comments: I like the error message being red, and it doesn’t say what exactly was incorrect
 
 ---
 
@@ -56,13 +55,13 @@ Comments:
 
 How easy was it to upload a book?
 
-Score:
+Score: 4
 
 Was it clear that the book had uploaded successfully?
 
-Score:
+Score: 5
 
-Comments:
+Comments: Genre selections very limited
 
 ---
 
@@ -70,13 +69,13 @@ Comments:
 
 Was the error message easy to understand?
 
-Score:
+Score: 5
 
 Did the app clearly explain why the upload was rejected?
 
-Score:
+Score: 5
 
-Comments:
+Comments: Previous book uploaded message doesn’t get wiped
 
 ---
 
@@ -84,19 +83,21 @@ Comments:
 
 The application was easy to use.
 
-Score:
+Score: 5
 
 The navigation was clear.
 
-Score:
+Score: 5
 
 I would feel comfortable using this application myself.
 
-Score:
+Score: 5
 
 ### What did you like most?
+The colour theme is very easy on the eyes and is very clean
 
 ### What would you improve?
+Maybe add a PDF-only message for uploading a book, and make sure no messages from previous uploads show when adding a new one.
 
 ---
 
@@ -108,17 +109,17 @@ Score:
 
 How easy was it to complete this task?
 
-Score:
+Score: 5
 
 Was it clear what the app was doing?
 
-Score:
+Score: 5
 
 How confident are you that you successfully accessed your own library?
 
-Score:
+Score: 5
 
-Comments:
+Comments: Easy interface to use. IF entering password via on-screen keyboard, consider using the RETURN key to complete log in. Also: enter on pc keyboard to complete log in would be cool
 
 ---
 
@@ -126,13 +127,13 @@ Comments:
 
 Was the error message easy to understand?
 
-Score:
+Score: 5
 
 Did you understand why the login failed?
 
-Score:
+Score: 5
 
-Comments:
+Comments: Standard error message that was clear to see and understand. Where is the “forgot password” option? Register is great; forgot password is useful.
 
 ---
 
@@ -142,13 +143,13 @@ Comments:
 
 How easy was it to upload a book?
 
-Score:
+Score: 3
 
 Was it clear that the book had uploaded successfully?
 
-Score:
+Score: 5
 
-Comments:
+Comments: Can the app read titles from the selected file’s filename? There’s no link between the title and the actual name of the book. Consider adding ISBN lookups.
 
 ---
 
@@ -156,13 +157,13 @@ Comments:
 
 Was the error message easy to understand?
 
-Score:
+Score: 5
 
 Did the app clearly explain why the upload was rejected?
 
-Score:
+Score: 5
 
-Comments:
+Comments: Ditto. (Same as Participant 1 = Previous book uploaded message doesn’t get wiped)
 
 ---
 
@@ -170,19 +171,21 @@ Comments:
 
 The application was easy to use.
 
-Score:
+Score: 5
 
 The navigation was clear.
 
-Score:
+Score: 5
 
 I would feel comfortable using this application myself.
 
-Score:
+Score: 5
 
 ### What did you like most?
+Simple, easy to navigate interface. 
 
 ### What would you improve?
+Themes and options to switch between them
 
 ---
 
@@ -194,17 +197,17 @@ Score:
 
 How easy was it to complete this task?
 
-Score:
+Score: 5
 
 Was it clear what the app was doing?
 
-Score:
+Score: 5
 
 How confident are you that you successfully accessed your own library?
 
-Score:
+Score: 5
 
-Comments:
+Comments: No, it works fine
 
 ---
 
@@ -212,14 +215,14 @@ Comments:
 
 Was the error message easy to understand?
 
-Score:
+Score: 5
 
 Did you understand why the login failed?
 
-Score:
+Score: 5
 
-Comments:
-
+Comments: I understood the error of my ways, by inputting the incorrect login credentials 
+ 
 ---
 
 ## Upload Books
@@ -228,13 +231,13 @@ Comments:
 
 How easy was it to upload a book?
 
-Score:
+Score: 5
 
 Was it clear that the book had uploaded successfully?
 
-Score:
+Score: 4
 
-Comments:
+Comments: fairly easy to understand 
 
 ---
 
@@ -242,13 +245,13 @@ Comments:
 
 Was the error message easy to understand?
 
-Score:
+Score: 5
 
 Did the app clearly explain why the upload was rejected?
 
-Score:
+Score: 5
 
-Comments:
+Comments: None
 
 ---
 
@@ -256,16 +259,18 @@ Comments:
 
 The application was easy to use.
 
-Score:
+Score: 5
 
 The navigation was clear.
 
-Score:
+Score: 5
 
 I would feel comfortable using this application myself.
 
-Score:
+Score: 5
 
 ### What did you like most?
+the look
 
 ### What would you improve?
+Options to personalize colour, background ect
