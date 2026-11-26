@@ -120,6 +120,7 @@ npx expo start -c
 
 ## Project Structure
 
+```
 TookABook/
 ├── TookABook-app/
 ├── TookABook-backend/
@@ -130,6 +131,8 @@ TookABook/
 ├── app-documentation.md
 ├── reflection.md
 └── README.md
+```
+
 ---
 
 
