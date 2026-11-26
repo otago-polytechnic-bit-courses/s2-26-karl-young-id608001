@@ -48,3 +48,30 @@ The part of the project I am most confident about is the book upload functionali
 Although it was the hardest feature to implement, it also taught me the most. Getting files from React Native to the Django API required testing different upload approaches and working through unexpected crashes and reliability issues caused by large files. 
 
 While the final solution changed from my original design, it did help me better understand mobile file handling and how design decisions can affect implementation later in a project.
+
+---
+
+# AI Usage Declaration
+
+## Tools Used
+
+- ChatGPT
+- GitHub Copilot
+
+## Usage
+
+These tools were used to assist with debugging, code generation, design discussions and drafting documentation throughout the project.
+
+## Example Where AI Helped
+
+One example where AI helped was generating boilerplate code and helping debug issues with API requests between React Native and Django. 
+This decreased the amount of repetitive code I needed to write and helped identify issues more quickly during development.
+
+## Example Where AI Was Wrong or Had To Be Rejected
+
+During development, AI-generated suggestions sometimes recommended approaches that did not work correctly within the constraints of Expo Go. 
+One example was a suggested approach to PDF rendering that relied on libraries incompatible with my development environment. 
+
+After reviewing the documentation, these suggestions had to be investigated, tested, and ultimately rejected in favour of a different implementation using PyMuPDF and image rendering.
+
+All AI-generated suggestions were reviewed, tested and adapted before being incorporated into the project.
