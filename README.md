@@ -4,6 +4,61 @@ TookABook is a mobile eBook library app built using React Native, Expo and Djang
 
 ---
 
+## Features
+
+- User registration and login
+- JWT authentication
+- Personal library management
+- Upload books and PDFs
+- Open and read uploaded books
+- Support for PDF and CBZ files
+- Recently Added section
+
+---
+
+## Documentation
+
+Project documentation is located in the `docs` folder.
+
+### Design Documentation
+
+- App Concept
+- Full Requirements List
+- The 10 Requirements
+- System Design
+- API Design
+- Wireframes
+- Design Reflection
+
+### Project Management
+
+- Sprint Planning
+- Project Management
+
+### User Acceptance Testing
+
+- UAT Testing Plan
+- UAT Feedback Form
+- UAT Reflection
+
+### Releases
+
+Release notes can be found in:
+
+docs/releases/
+
+**Current Releases**
+
+- v0.1.0 - Sprint 1
+- v0.2.0 - Sprint 2
+
+### Additional setup and development documentation can be found in:
+
+- api-documentation.md
+- app-documentation.md
+
+---
+
 ## Running the Project
 
 ### Backend
@@ -40,44 +95,6 @@ npx expo start -c
 
 ---
 
-## Documentation
-
-All project documentation can be found in:
-
-[The Wiki](https://github.com/otago-polytechnic-bit-courses/s2-26-karl-young-id608001/wiki) &  the docs/ folder
-
-
-### Releases
-
-Sprint releases and release notes:
-
-```text
-docs/releases/
-```
-
-Current releases:
-
-- v0.1.0
-- v0.2.0
-
-Included documentation:
-
-- API Design
-- System Design
-- Sprint Planning
-- Wireframes
-- Full Requirements List
-- Project Management
-- Original App Idea
-- Design Reflection
-- TookABook App Concept
-- UAT Testing Plan
-- UAT Feedback Form
-- v0.1.0 release
-- v0.2.0 release
-
----
-
 ## Tech Stack
 
 ### Frontend
@@ -91,8 +108,8 @@ Included documentation:
 
 - Django
 - Django REST Framework
-- JWT Authentication (SimpleJWT)
-- django-cors-headers
+- SimpleJWT
+- Django CORS Headers
 - Pillow
 
 ### Database
@@ -100,6 +117,21 @@ Included documentation:
 - SQLite (Development)
 
 ---
+
+## Project Structure
+
+TookABook/
+├── TookABook-app/
+├── TookABook-backend/
+├── docs/
+│   ├── releases/
+│   └── Wiki/
+├── api-documentation.md
+├── app-documentation.md
+├── reflection.md
+└── README.md
+---
+
 
 ## Author
 
