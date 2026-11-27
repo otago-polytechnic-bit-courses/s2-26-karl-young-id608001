@@ -4,6 +4,14 @@ TookABook is a mobile eBook library app built using React Native, Expo and Djang
 
 ---
 
+## Presentation Video
+
+The presentation video can be viewed here:
+
+[Presentation Video](https://youtu.be/6pyanMZtB-Q)
+
+---
+
 ## Features
 
 - User registration and login
